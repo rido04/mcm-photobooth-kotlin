@@ -1,0 +1,11 @@
+R_DEF: Internal format may change without notice
+local
+id btnPrint
+id btnSelectPhoto
+id btnTakePhoto
+id imageView
+id tvStatus
+layout activity_main
+string app_name
+xml device_filter
+xml file_paths

@@ -1,0 +1,187 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.example.photoprintapp"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="24"
+9        android:targetSdkVersion="34" />
+10
+11    <!-- Permissions untuk kamera dan USB -->
+12    <uses-feature
+12-->C:\work\PhotoPrintApp\app\src\main\AndroidManifest.xml:6:5-85
+13        android:name="android.hardware.camera"
+13-->C:\work\PhotoPrintApp\app\src\main\AndroidManifest.xml:6:19-57
+14        android:required="false" />
+14-->C:\work\PhotoPrintApp\app\src\main\AndroidManifest.xml:6:58-82
+15    <uses-feature android:name="android.hardware.usb.host" />
+15-->C:\work\PhotoPrintApp\app\src\main\AndroidManifest.xml:7:5-62
+15-->C:\work\PhotoPrintApp\app\src\main\AndroidManifest.xml:7:19-59
+16
+17    <uses-permission android:name="android.permission.CAMERA" />
+17-->C:\work\PhotoPrintApp\app\src\main\AndroidManifest.xml:9:5-65
+17-->C:\work\PhotoPrintApp\app\src\main\AndroidManifest.xml:9:22-62
+18    <uses-permission
+18-->C:\work\PhotoPrintApp\app\src\main\AndroidManifest.xml:10:5-11:38
+19        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+19-->C:\work\PhotoPrintApp\app\src\main\AndroidManifest.xml:10:22-78
+20        android:maxSdkVersion="28" />
+20-->C:\work\PhotoPrintApp\app\src\main\AndroidManifest.xml:11:9-35
+21    <uses-permission
+21-->C:\work\PhotoPrintApp\app\src\main\AndroidManifest.xml:12:5-13:38
+22        android:name="android.permission.READ_EXTERNAL_STORAGE"
+22-->C:\work\PhotoPrintApp\app\src\main\AndroidManifest.xml:12:22-77
+23        android:maxSdkVersion="32" />
+23-->C:\work\PhotoPrintApp\app\src\main\AndroidManifest.xml:13:9-35
+24    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+24-->C:\work\PhotoPrintApp\app\src\main\AndroidManifest.xml:14:5-76
+24-->C:\work\PhotoPrintApp\app\src\main\AndroidManifest.xml:14:22-73
+25
+26    <permission
+26-->[androidx.core:core:1.12.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\102bb4ca6e8b3e009636483291d8df3f\transformed\core-1.12.0\AndroidManifest.xml:22:5-24:47
+27        android:name="com.example.photoprintapp.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+27-->[androidx.core:core:1.12.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\102bb4ca6e8b3e009636483291d8df3f\transformed\core-1.12.0\AndroidManifest.xml:23:9-81
+28        android:protectionLevel="signature" />
+28-->[androidx.core:core:1.12.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\102bb4ca6e8b3e009636483291d8df3f\transformed\core-1.12.0\AndroidManifest.xml:24:9-44
+29
+30    <uses-permission android:name="com.example.photoprintapp.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+30-->[androidx.core:core:1.12.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\102bb4ca6e8b3e009636483291d8df3f\transformed\core-1.12.0\AndroidManifest.xml:26:5-97
+30-->[androidx.core:core:1.12.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\102bb4ca6e8b3e009636483291d8df3f\transformed\core-1.12.0\AndroidManifest.xml:26:22-94
+31
+32    <application
+32-->C:\work\PhotoPrintApp\app\src\main\AndroidManifest.xml:16:5-52:19
+33        android:allowBackup="true"
+33-->C:\work\PhotoPrintApp\app\src\main\AndroidManifest.xml:17:9-35
+34        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+34-->[androidx.core:core:1.12.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\102bb4ca6e8b3e009636483291d8df3f\transformed\core-1.12.0\AndroidManifest.xml:28:18-86
+35        android:debuggable="true"
+36        android:extractNativeLibs="false"
+37        android:icon="@android:drawable/ic_menu_camera"
+37-->C:\work\PhotoPrintApp\app\src\main\AndroidManifest.xml:18:9-56
+38        android:label="Photo Print App"
+38-->C:\work\PhotoPrintApp\app\src\main\AndroidManifest.xml:19:9-40
+39        android:supportsRtl="true"
+39-->C:\work\PhotoPrintApp\app\src\main\AndroidManifest.xml:20:9-35
+40        android:testOnly="true"
+41        android:theme="@style/Theme.AppCompat.Light.DarkActionBar" >
+41-->C:\work\PhotoPrintApp\app\src\main\AndroidManifest.xml:21:9-67
+42        <activity
+42-->C:\work\PhotoPrintApp\app\src\main\AndroidManifest.xml:24:9-39:20
+43            android:name="com.example.photoprintapp.MainActivity"
+43-->C:\work\PhotoPrintApp\app\src\main\AndroidManifest.xml:25:13-41
+44            android:exported="true" >
+44-->C:\work\PhotoPrintApp\app\src\main\AndroidManifest.xml:26:13-36
+45            <intent-filter>
+45-->C:\work\PhotoPrintApp\app\src\main\AndroidManifest.xml:27:13-30:29
+46                <action android:name="android.intent.action.MAIN" />
+46-->C:\work\PhotoPrintApp\app\src\main\AndroidManifest.xml:28:17-69
+46-->C:\work\PhotoPrintApp\app\src\main\AndroidManifest.xml:28:25-66
+47
+48                <category android:name="android.intent.category.LAUNCHER" />
+48-->C:\work\PhotoPrintApp\app\src\main\AndroidManifest.xml:29:17-77
+48-->C:\work\PhotoPrintApp\app\src\main\AndroidManifest.xml:29:27-74
+49            </intent-filter>
+50
+51            <!-- USB device filter untuk Canon printer -->
+52            <intent-filter>
+52-->C:\work\PhotoPrintApp\app\src\main\AndroidManifest.xml:33:13-35:29
+53                <action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED" />
+53-->C:\work\PhotoPrintApp\app\src\main\AndroidManifest.xml:34:17-90
+53-->C:\work\PhotoPrintApp\app\src\main\AndroidManifest.xml:34:25-87
+54            </intent-filter>
+55
+56            <meta-data
+56-->C:\work\PhotoPrintApp\app\src\main\AndroidManifest.xml:36:13-38:57
+57                android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED"
+57-->C:\work\PhotoPrintApp\app\src\main\AndroidManifest.xml:37:17-79
+58                android:resource="@xml/device_filter" />
+58-->C:\work\PhotoPrintApp\app\src\main\AndroidManifest.xml:38:17-54
+59        </activity>
+60
+61        <!-- FileProvider untuk sharing foto -->
+62        <provider
+62-->C:\work\PhotoPrintApp\app\src\main\AndroidManifest.xml:42:9-50:20
+63            android:name="androidx.core.content.FileProvider"
+63-->C:\work\PhotoPrintApp\app\src\main\AndroidManifest.xml:43:13-62
+64            android:authorities="com.example.photoprintapp.fileprovider"
+64-->C:\work\PhotoPrintApp\app\src\main\AndroidManifest.xml:44:13-73
+65            android:exported="false"
+65-->C:\work\PhotoPrintApp\app\src\main\AndroidManifest.xml:45:13-37
+66            android:grantUriPermissions="true" >
+66-->C:\work\PhotoPrintApp\app\src\main\AndroidManifest.xml:46:13-47
+67            <meta-data
+67-->C:\work\PhotoPrintApp\app\src\main\AndroidManifest.xml:47:13-49:54
+68                android:name="android.support.FILE_PROVIDER_PATHS"
+68-->C:\work\PhotoPrintApp\app\src\main\AndroidManifest.xml:48:17-67
+69                android:resource="@xml/file_paths" />
+69-->C:\work\PhotoPrintApp\app\src\main\AndroidManifest.xml:49:17-51
+70        </provider>
+71        <provider
+71-->[androidx.emoji2:emoji2:1.2.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\5ac437853ce22cc4f70dc376ad89b568\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:24:9-32:20
+72            android:name="androidx.startup.InitializationProvider"
+72-->[androidx.emoji2:emoji2:1.2.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\5ac437853ce22cc4f70dc376ad89b568\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:25:13-67
+73            android:authorities="com.example.photoprintapp.androidx-startup"
+73-->[androidx.emoji2:emoji2:1.2.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\5ac437853ce22cc4f70dc376ad89b568\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:26:13-68
+74            android:exported="false" >
+74-->[androidx.emoji2:emoji2:1.2.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\5ac437853ce22cc4f70dc376ad89b568\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:27:13-37
+75            <meta-data
+75-->[androidx.emoji2:emoji2:1.2.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\5ac437853ce22cc4f70dc376ad89b568\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:29:13-31:52
+76                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+76-->[androidx.emoji2:emoji2:1.2.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\5ac437853ce22cc4f70dc376ad89b568\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:30:17-75
+77                android:value="androidx.startup" />
+77-->[androidx.emoji2:emoji2:1.2.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\5ac437853ce22cc4f70dc376ad89b568\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:31:17-49
+78            <meta-data
+78-->[androidx.lifecycle:lifecycle-process:2.6.1] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\a6fe67ce4b60603560193b8136e8a479\transformed\jetified-lifecycle-process-2.6.1\AndroidManifest.xml:29:13-31:52
+79                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+79-->[androidx.lifecycle:lifecycle-process:2.6.1] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\a6fe67ce4b60603560193b8136e8a479\transformed\jetified-lifecycle-process-2.6.1\AndroidManifest.xml:30:17-78
+80                android:value="androidx.startup" />
+80-->[androidx.lifecycle:lifecycle-process:2.6.1] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\a6fe67ce4b60603560193b8136e8a479\transformed\jetified-lifecycle-process-2.6.1\AndroidManifest.xml:31:17-49
+81            <meta-data
+81-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\95534bd726c5df624a9db169c954d74b\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:29:13-31:52
+82                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+82-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\95534bd726c5df624a9db169c954d74b\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:30:17-85
+83                android:value="androidx.startup" />
+83-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\95534bd726c5df624a9db169c954d74b\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:31:17-49
+84        </provider>
+85
+86        <receiver
+86-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\95534bd726c5df624a9db169c954d74b\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:34:9-52:20
+87            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+87-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\95534bd726c5df624a9db169c954d74b\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:35:13-76
+88            android:directBootAware="false"
+88-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\95534bd726c5df624a9db169c954d74b\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:36:13-44
+89            android:enabled="true"
+89-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\95534bd726c5df624a9db169c954d74b\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:37:13-35
+90            android:exported="true"
+90-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\95534bd726c5df624a9db169c954d74b\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:38:13-36
+91            android:permission="android.permission.DUMP" >
+91-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\95534bd726c5df624a9db169c954d74b\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:39:13-57
+92            <intent-filter>
+92-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\95534bd726c5df624a9db169c954d74b\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:40:13-42:29
+93                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+93-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\95534bd726c5df624a9db169c954d74b\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:41:17-91
+93-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\95534bd726c5df624a9db169c954d74b\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:41:25-88
+94            </intent-filter>
+95            <intent-filter>
+95-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\95534bd726c5df624a9db169c954d74b\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:43:13-45:29
+96                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+96-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\95534bd726c5df624a9db169c954d74b\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:44:17-85
+96-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\95534bd726c5df624a9db169c954d74b\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:44:25-82
+97            </intent-filter>
+98            <intent-filter>
+98-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\95534bd726c5df624a9db169c954d74b\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:46:13-48:29
+99                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+99-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\95534bd726c5df624a9db169c954d74b\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:47:17-88
+99-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\95534bd726c5df624a9db169c954d74b\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:47:25-85
+100            </intent-filter>
+101            <intent-filter>
+101-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\95534bd726c5df624a9db169c954d74b\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:49:13-51:29
+102                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+102-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\95534bd726c5df624a9db169c954d74b\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:50:17-95
+102-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\95534bd726c5df624a9db169c954d74b\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:50:25-92
+103            </intent-filter>
+104        </receiver>
+105    </application>
+106
+107</manifest>

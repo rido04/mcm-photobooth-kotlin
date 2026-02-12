@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Canon Vendor ID = 0x04a9 -->
+    <!-- Filter untuk Canon PIXMA series -->
+    <usb-device vendor-id="1193" /> <!-- 0x04a9 in decimal -->
+</resources>
