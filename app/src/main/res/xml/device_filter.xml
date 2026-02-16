@@ -3,4 +3,16 @@
     <!-- Canon Vendor ID = 0x04a9 -->
     <!-- Filter untuk Canon PIXMA series -->
     <usb-device vendor-id="1193" /> <!-- 0x04a9 in decimal -->
+
+    <usb-device class="14" />
+    <!-- Miscellaneous class 239 (vendor 0x1BCF pakai ini) -->
+    <usb-device class="239" />
+    <!-- Sunplus Innovation 0x1BCF = 7119 decimal -->
+    <usb-device vendor-id="7119" />
+    <!-- Logitech 0x046D = 1133 decimal -->
+    <usb-device vendor-id="1133" />
+    <!-- Microdia 0x0C45 = 3141 decimal -->
+    <usb-device vendor-id="3141" />
+    <!-- Realtek 0x0BDA = 3034 decimal -->
+    <usb-device vendor-id="3034" />
 </resources>

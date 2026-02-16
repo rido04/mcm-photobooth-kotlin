@@ -1,18 +1,34 @@
 [
     {
-        "merged": "C:\\Users\\sandi\\.gradle\\daemon\\9.0-milestone-1\\com.example.photoprintapp-merged_res-35:\\xml_file_paths.xml.flat",
-        "source": "C:\\Users\\sandi\\.gradle\\daemon\\9.0-milestone-1\\com.example.photoprintapp-main-37:\\xml\\file_paths.xml"
+        "merged": "com.example.photoprintapp-merged_res-35:/layout_activity_photobooth.xml.flat",
+        "source": "com.example.photoprintapp-main-37:/layout/activity_photobooth.xml"
     },
     {
-        "merged": "C:\\Users\\sandi\\.gradle\\daemon\\9.0-milestone-1\\com.example.photoprintapp-merged_res-35:\\layout_activity_main.xml.flat",
-        "source": "C:\\Users\\sandi\\.gradle\\daemon\\9.0-milestone-1\\com.example.photoprintapp-main-37:\\layout\\activity_main.xml"
+        "merged": "com.example.photoprintapp-merged_res-35:/xml_device_filter.xml.flat",
+        "source": "com.example.photoprintapp-main-37:/xml/device_filter.xml"
     },
     {
-        "merged": "C:\\Users\\sandi\\.gradle\\daemon\\9.0-milestone-1\\com.example.photoprintapp-merged_res-35:\\mipmap-anydpi-v26_ic_launcher.xml.flat",
-        "source": "C:\\Users\\sandi\\.gradle\\daemon\\9.0-milestone-1\\com.example.photoprintapp-main-37:\\mipmap-anydpi-v26\\ic_launcher.xml"
+        "merged": "com.example.photoprintapp-merged_res-35:/layout_activity_preview.xml.flat",
+        "source": "com.example.photoprintapp-main-37:/layout/activity_preview.xml"
     },
     {
-        "merged": "C:\\Users\\sandi\\.gradle\\daemon\\9.0-milestone-1\\com.example.photoprintapp-merged_res-35:\\xml_device_filter.xml.flat",
-        "source": "C:\\Users\\sandi\\.gradle\\daemon\\9.0-milestone-1\\com.example.photoprintapp-main-37:\\xml\\device_filter.xml"
+        "merged": "com.example.photoprintapp-merged_res-35:/layout_activity_filter_selection.xml.flat",
+        "source": "com.example.photoprintapp-main-37:/layout/activity_filter_selection.xml"
+    },
+    {
+        "merged": "com.example.photoprintapp-merged_res-35:/layout_item_sticker.xml.flat",
+        "source": "com.example.photoprintapp-main-37:/layout/item_sticker.xml"
+    },
+    {
+        "merged": "com.example.photoprintapp-merged_res-35:/layout_item_filter_card.xml.flat",
+        "source": "com.example.photoprintapp-main-37:/layout/item_filter_card.xml"
+    },
+    {
+        "merged": "com.example.photoprintapp-merged_res-35:/xml_file_paths.xml.flat",
+        "source": "com.example.photoprintapp-main-37:/xml/file_paths.xml"
+    },
+    {
+        "merged": "com.example.photoprintapp-merged_res-35:/layout_activity_main.xml.flat",
+        "source": "com.example.photoprintapp-main-37:/layout/activity_main.xml"
     }
 ]

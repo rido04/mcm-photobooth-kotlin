@@ -1,6 +1,26 @@
 [
     {
+        "merged": "com.example.photoprintapp-mergeDebugResources-34:/layout/item_filter_card.xml",
+        "source": "com.example.photoprintapp-main-37:/layout/item_filter_card.xml"
+    },
+    {
+        "merged": "com.example.photoprintapp-mergeDebugResources-34:/layout/item_sticker.xml",
+        "source": "com.example.photoprintapp-main-37:/layout/item_sticker.xml"
+    },
+    {
+        "merged": "com.example.photoprintapp-mergeDebugResources-34:/layout/activity_filter_selection.xml",
+        "source": "com.example.photoprintapp-main-37:/layout/activity_filter_selection.xml"
+    },
+    {
+        "merged": "com.example.photoprintapp-mergeDebugResources-34:/layout/activity_preview.xml",
+        "source": "com.example.photoprintapp-main-37:/layout/activity_preview.xml"
+    },
+    {
         "merged": "com.example.photoprintapp-mergeDebugResources-34:/layout/activity_main.xml",
         "source": "com.example.photoprintapp-main-37:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.example.photoprintapp-mergeDebugResources-34:/layout/activity_photobooth.xml",
+        "source": "com.example.photoprintapp-main-37:/layout/activity_photobooth.xml"
     }
 ]

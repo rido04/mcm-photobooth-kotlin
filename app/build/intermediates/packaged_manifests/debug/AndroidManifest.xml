@@ -5,16 +5,24 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="24"
+        android:minSdkVersion="21"
         android:targetSdkVersion="34" />
 
-    <!-- Permissions untuk kamera dan USB -->
+    <uses-feature
+        android:name="android.hardware.usb.host"
+        android:required="true" />
     <uses-feature
         android:name="android.hardware.camera"
         android:required="false" />
-    <uses-feature android:name="android.hardware.usb.host" />
+    <uses-feature
+        android:name="android.software.leanback"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.touchscreen"
+        android:required="false" />
 
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         android:maxSdkVersion="28" />
@@ -33,22 +41,35 @@
         android:allowBackup="true"
         android:appComponentFactory="androidx.core.app.CoreComponentFactory"
         android:debuggable="true"
-        android:extractNativeLibs="false"
-        android:icon="@android:drawable/ic_menu_camera"
-        android:label="Photo Print App"
+        android:extractNativeLibs="true"
+        android:icon="@android:drawable/sym_def_app_icon"
+        android:label="@string/app_name"
+        android:roundIcon="@android:drawable/sym_def_app_icon"
         android:supportsRtl="true"
-        android:testOnly="true"
-        android:theme="@style/Theme.AppCompat.Light.DarkActionBar" >
+        android:theme="@style/Theme.Photobooth"
+        android:usesCleartextTraffic="true" >
+
+        <!-- Screen 1: Filter Selection -->
         <activity
-            android:name="com.example.photoprintapp.MainActivity"
-            android:exported="true" >
+            android:name="com.example.photoprintapp.activities.FilterSelectionActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:exported="true"
+            android:launchMode="singleTop"
+            android:screenOrientation="landscape" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
             </intent-filter>
+        </activity>
 
-            <!-- USB device filter untuk Canon printer -->
+        <!-- Screen 2: Photobooth (camera preview + capture) -->
+        <activity
+            android:name="com.example.photoprintapp.activities.PhotoboothActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:exported="false"
+            android:screenOrientation="landscape" >
             <intent-filter>
                 <action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED" />
             </intent-filter>
@@ -58,7 +79,14 @@
                 android:resource="@xml/device_filter" />
         </activity>
 
-        <!-- FileProvider untuk sharing foto -->
+        <!-- Screen 3: Preview + Sticker -->
+        <activity
+            android:name="com.example.photoprintapp.activities.PreviewActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:exported="false"
+            android:screenOrientation="landscape" />
+
+        <!-- FileProvider -->
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.example.photoprintapp.fileprovider"

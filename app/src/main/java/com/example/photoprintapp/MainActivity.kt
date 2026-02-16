@@ -24,6 +24,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import com.example.photoprintapp.databinding.ActivityMainBinding
+import com.example.photoprintapp.services.PrintApiService
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.IOException
@@ -40,7 +41,8 @@ class MainActivity : AppCompatActivity() {
     private var usbConnection: UsbDeviceConnection? = null
 
     private val ACTION_USB_PERMISSION = "com.example.photoprintapp.USB_PERMISSION"
-
+    private val printApiService = PrintApiService()
+    
     // Launcher untuk mengambil foto dengan kamera
     private val takePictureLauncher = registerForActivityResult(
         ActivityResultContracts.TakePicture()
@@ -307,10 +309,50 @@ class MainActivity : AppCompatActivity() {
 
     private fun printPhoto() {
         currentPhotoBitmap?.let { bitmap ->
-            // Menggunakan Android Print Framework (kompatibel dengan printer manapun)
-            printUsingAndroidPrintFramework(bitmap)
+            updateStatus("Mengkonversi foto ke Base64...")
+            
+            // Convert bitmap ke Base64
+            val base64Image = bitmapToBase64(bitmap)
+            
+            updateStatus("Mengirim print job ke server...")
+            
+            // Hit API - FIX: Specify types explicitly
+            printApiService.printPhoto(base64Image, copies = 1) { success: Boolean, message: String ->
+                runOnUiThread {
+                    if (success) {
+                        updateStatus("✅ $message")
+                    } else {
+                        updateStatus("❌ $message")
+                    }
+                }
+            }
+            
         } ?: run {
             updateStatus("Tidak ada foto untuk di-print")
+        }
+    }
+    
+    // Helper function: Bitmap → Base64
+    private fun bitmapToBase64(bitmap: Bitmap): String {
+        val byteArrayOutputStream = ByteArrayOutputStream()
+        // Compress ke JPEG quality 85%
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 85, byteArrayOutputStream)
+        val byteArray = byteArrayOutputStream.toByteArray()
+        return android.util.Base64.encodeToString(byteArray, android.util.Base64.NO_WRAP)
+    }
+    
+    // Optional: Tambah button untuk check printer status
+    private fun checkPrinterStatus() {
+        updateStatus("Checking printer status...")
+        // FIX: Specify types explicitly
+        printApiService.checkStatus { success: Boolean, message: String ->
+            runOnUiThread {
+                if (success) {
+                    updateStatus("Printer Status: $message")
+                } else {
+                    updateStatus("Status check failed: $message")
+                }
+            }
         }
     }
 
