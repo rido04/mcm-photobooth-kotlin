@@ -1,5 +1,7 @@
 package com.example.photoprintapp.adapters
 
+import android.content.Context
+import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,36 +10,46 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.photoprintapp.R
 
 class StickerAdapter(
-    private val stickers: List<Int>,
-    private val onSelect: (Int) -> Unit,
+    private val context: Context,
+    private val stickerFiles: List<String>, // asset filenames e.g. "sticker/beard.png"
+    private val onStickerSelected: (String) -> Unit
 ) : RecyclerView.Adapter<StickerAdapter.VH>() {
 
     private var selectedPos = -1
 
-    inner class VH(view: View) : RecyclerView.ViewHolder(view) {
-        val img: ImageView = view.findViewById(R.id.imgSticker)
-        val highlight: View = view.findViewById(R.id.viewHighlight)
-    }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
-        val v = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_sticker, parent, false)
+        val v = LayoutInflater.from(parent.context).inflate(R.layout.item_sticker, parent, false)
         return VH(v)
     }
 
-    override fun getItemCount() = stickers.size
-
     override fun onBindViewHolder(holder: VH, position: Int) {
-        holder.img.setImageResource(stickers[position])
-        holder.highlight.visibility =
-            if (position == selectedPos) View.VISIBLE else View.GONE
+        val file = stickerFiles[position]
+        try {
+            val stream = context.assets.open(file)
+            val bmp = BitmapFactory.decodeStream(stream)
+            stream.close()
+            holder.iv.setImageBitmap(bmp)
+        } catch (e: Exception) {
+            holder.iv.setImageResource(android.R.drawable.ic_menu_gallery)
+        }
+
+        holder.iv.setBackgroundResource(
+            if (position == selectedPos) R.drawable.bg_sticker_item_selected
+            else R.drawable.bg_sticker_item
+        )
 
         holder.itemView.setOnClickListener {
-            val prev = selectedPos
-            selectedPos = if (selectedPos == position) -1 else position
-            notifyItemChanged(prev)
-            notifyItemChanged(selectedPos)
-            onSelect(if (selectedPos == -1) 0 else stickers[position])
+            val old = selectedPos
+            selectedPos = position
+            notifyItemChanged(old)
+            notifyItemChanged(position)
+            onStickerSelected(file)
         }
+    }
+
+    override fun getItemCount() = stickerFiles.size
+
+    class VH(v: View) : RecyclerView.ViewHolder(v) {
+        val iv: ImageView = v.findViewById(R.id.ivSticker)
     }
 }

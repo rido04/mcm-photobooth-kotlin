@@ -5,13 +5,11 @@ import android.view.LayoutInflater;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.example.photoprintapp.R;
@@ -21,85 +19,68 @@ import java.lang.String;
 
 public final class ActivityPhotoboothBinding implements ViewBinding {
   @NonNull
-  private final ConstraintLayout rootView;
+  private final LinearLayout rootView;
 
   @NonNull
-  public final TextView bottomBar;
+  public final TextView btn4Foto;
 
   @NonNull
-  public final Button btnCapture;
+  public final TextView btn6Foto;
 
   @NonNull
-  public final Button btnGrid1;
+  public final TextView btnBack;
 
   @NonNull
-  public final Button btnGrid2;
+  public final LinearLayout btnCapture;
 
   @NonNull
-  public final Button btnGrid3;
+  public final LinearLayout btnOk;
 
   @NonNull
-  public final Button btnGrid4;
+  public final LinearLayout btnRetake;
 
   @NonNull
-  public final Button btnNext;
+  public final LinearLayout layoutCountdown;
 
   @NonNull
-  public final Button btnRetake;
+  public final RecyclerView rvPhotoGrid;
 
   @NonNull
-  public final ImageView imgSlot1;
-
-  @NonNull
-  public final ImageView imgSlot2;
-
-  @NonNull
-  public final ImageView imgSlot3;
-
-  @NonNull
-  public final ImageView imgSlot4;
-
-  @NonNull
-  public final LinearLayout rightPanel;
-
-  @NonNull
-  public final SurfaceView surfaceCamera;
+  public final SurfaceView surfaceView;
 
   @NonNull
   public final TextView tvCountdown;
 
   @NonNull
-  public final TextView tvGridInfo;
+  public final TextView tvFilterLabel;
 
-  private ActivityPhotoboothBinding(@NonNull ConstraintLayout rootView, @NonNull TextView bottomBar,
-      @NonNull Button btnCapture, @NonNull Button btnGrid1, @NonNull Button btnGrid2,
-      @NonNull Button btnGrid3, @NonNull Button btnGrid4, @NonNull Button btnNext,
-      @NonNull Button btnRetake, @NonNull ImageView imgSlot1, @NonNull ImageView imgSlot2,
-      @NonNull ImageView imgSlot3, @NonNull ImageView imgSlot4, @NonNull LinearLayout rightPanel,
-      @NonNull SurfaceView surfaceCamera, @NonNull TextView tvCountdown,
-      @NonNull TextView tvGridInfo) {
+  @NonNull
+  public final TextView tvStatus;
+
+  private ActivityPhotoboothBinding(@NonNull LinearLayout rootView, @NonNull TextView btn4Foto,
+      @NonNull TextView btn6Foto, @NonNull TextView btnBack, @NonNull LinearLayout btnCapture,
+      @NonNull LinearLayout btnOk, @NonNull LinearLayout btnRetake,
+      @NonNull LinearLayout layoutCountdown, @NonNull RecyclerView rvPhotoGrid,
+      @NonNull SurfaceView surfaceView, @NonNull TextView tvCountdown,
+      @NonNull TextView tvFilterLabel, @NonNull TextView tvStatus) {
     this.rootView = rootView;
-    this.bottomBar = bottomBar;
+    this.btn4Foto = btn4Foto;
+    this.btn6Foto = btn6Foto;
+    this.btnBack = btnBack;
     this.btnCapture = btnCapture;
-    this.btnGrid1 = btnGrid1;
-    this.btnGrid2 = btnGrid2;
-    this.btnGrid3 = btnGrid3;
-    this.btnGrid4 = btnGrid4;
-    this.btnNext = btnNext;
+    this.btnOk = btnOk;
     this.btnRetake = btnRetake;
-    this.imgSlot1 = imgSlot1;
-    this.imgSlot2 = imgSlot2;
-    this.imgSlot3 = imgSlot3;
-    this.imgSlot4 = imgSlot4;
-    this.rightPanel = rightPanel;
-    this.surfaceCamera = surfaceCamera;
+    this.layoutCountdown = layoutCountdown;
+    this.rvPhotoGrid = rvPhotoGrid;
+    this.surfaceView = surfaceView;
     this.tvCountdown = tvCountdown;
-    this.tvGridInfo = tvGridInfo;
+    this.tvFilterLabel = tvFilterLabel;
+    this.tvStatus = tvStatus;
   }
 
   @Override
   @NonNull
-  public ConstraintLayout getRoot() {
+  public LinearLayout getRoot() {
     return rootView;
   }
 
@@ -124,87 +105,57 @@ public final class ActivityPhotoboothBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
-      id = R.id.bottomBar;
-      TextView bottomBar = ViewBindings.findChildViewById(rootView, id);
-      if (bottomBar == null) {
+      id = R.id.btn4Foto;
+      TextView btn4Foto = ViewBindings.findChildViewById(rootView, id);
+      if (btn4Foto == null) {
+        break missingId;
+      }
+
+      id = R.id.btn6Foto;
+      TextView btn6Foto = ViewBindings.findChildViewById(rootView, id);
+      if (btn6Foto == null) {
+        break missingId;
+      }
+
+      id = R.id.btnBack;
+      TextView btnBack = ViewBindings.findChildViewById(rootView, id);
+      if (btnBack == null) {
         break missingId;
       }
 
       id = R.id.btnCapture;
-      Button btnCapture = ViewBindings.findChildViewById(rootView, id);
+      LinearLayout btnCapture = ViewBindings.findChildViewById(rootView, id);
       if (btnCapture == null) {
         break missingId;
       }
 
-      id = R.id.btnGrid1;
-      Button btnGrid1 = ViewBindings.findChildViewById(rootView, id);
-      if (btnGrid1 == null) {
-        break missingId;
-      }
-
-      id = R.id.btnGrid2;
-      Button btnGrid2 = ViewBindings.findChildViewById(rootView, id);
-      if (btnGrid2 == null) {
-        break missingId;
-      }
-
-      id = R.id.btnGrid3;
-      Button btnGrid3 = ViewBindings.findChildViewById(rootView, id);
-      if (btnGrid3 == null) {
-        break missingId;
-      }
-
-      id = R.id.btnGrid4;
-      Button btnGrid4 = ViewBindings.findChildViewById(rootView, id);
-      if (btnGrid4 == null) {
-        break missingId;
-      }
-
-      id = R.id.btnNext;
-      Button btnNext = ViewBindings.findChildViewById(rootView, id);
-      if (btnNext == null) {
+      id = R.id.btnOk;
+      LinearLayout btnOk = ViewBindings.findChildViewById(rootView, id);
+      if (btnOk == null) {
         break missingId;
       }
 
       id = R.id.btnRetake;
-      Button btnRetake = ViewBindings.findChildViewById(rootView, id);
+      LinearLayout btnRetake = ViewBindings.findChildViewById(rootView, id);
       if (btnRetake == null) {
         break missingId;
       }
 
-      id = R.id.imgSlot1;
-      ImageView imgSlot1 = ViewBindings.findChildViewById(rootView, id);
-      if (imgSlot1 == null) {
+      id = R.id.layoutCountdown;
+      LinearLayout layoutCountdown = ViewBindings.findChildViewById(rootView, id);
+      if (layoutCountdown == null) {
         break missingId;
       }
 
-      id = R.id.imgSlot2;
-      ImageView imgSlot2 = ViewBindings.findChildViewById(rootView, id);
-      if (imgSlot2 == null) {
+      id = R.id.rvPhotoGrid;
+      RecyclerView rvPhotoGrid = ViewBindings.findChildViewById(rootView, id);
+      if (rvPhotoGrid == null) {
         break missingId;
       }
 
-      id = R.id.imgSlot3;
-      ImageView imgSlot3 = ViewBindings.findChildViewById(rootView, id);
-      if (imgSlot3 == null) {
-        break missingId;
-      }
-
-      id = R.id.imgSlot4;
-      ImageView imgSlot4 = ViewBindings.findChildViewById(rootView, id);
-      if (imgSlot4 == null) {
-        break missingId;
-      }
-
-      id = R.id.rightPanel;
-      LinearLayout rightPanel = ViewBindings.findChildViewById(rootView, id);
-      if (rightPanel == null) {
-        break missingId;
-      }
-
-      id = R.id.surfaceCamera;
-      SurfaceView surfaceCamera = ViewBindings.findChildViewById(rootView, id);
-      if (surfaceCamera == null) {
+      id = R.id.surfaceView;
+      SurfaceView surfaceView = ViewBindings.findChildViewById(rootView, id);
+      if (surfaceView == null) {
         break missingId;
       }
 
@@ -214,15 +165,21 @@ public final class ActivityPhotoboothBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.tvGridInfo;
-      TextView tvGridInfo = ViewBindings.findChildViewById(rootView, id);
-      if (tvGridInfo == null) {
+      id = R.id.tvFilterLabel;
+      TextView tvFilterLabel = ViewBindings.findChildViewById(rootView, id);
+      if (tvFilterLabel == null) {
         break missingId;
       }
 
-      return new ActivityPhotoboothBinding((ConstraintLayout) rootView, bottomBar, btnCapture,
-          btnGrid1, btnGrid2, btnGrid3, btnGrid4, btnNext, btnRetake, imgSlot1, imgSlot2, imgSlot3,
-          imgSlot4, rightPanel, surfaceCamera, tvCountdown, tvGridInfo);
+      id = R.id.tvStatus;
+      TextView tvStatus = ViewBindings.findChildViewById(rootView, id);
+      if (tvStatus == null) {
+        break missingId;
+      }
+
+      return new ActivityPhotoboothBinding((LinearLayout) rootView, btn4Foto, btn6Foto, btnBack,
+          btnCapture, btnOk, btnRetake, layoutCountdown, rvPhotoGrid, surfaceView, tvCountdown,
+          tvFilterLabel, tvStatus);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

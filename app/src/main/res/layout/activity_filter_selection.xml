@@ -1,58 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#1A1A2E"
-    android:padding="24dp">
+    android:orientation="vertical"
+    android:background="#0D0D1A"
+    android:padding="16dp">
 
+    <!-- ROW 1: Title -->
     <TextView
-        android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="MCM Photobooth"
+        android:text="Max-G Photobooth"
         android:textColor="#FFFFFF"
         android:textSize="28sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:fontFamily="sans-serif-medium"
+        android:layout_marginTop="12dp" />
 
     <TextView
-        android:id="@+id/tvSubtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
         android:text="Pilih filter untuk foto kamu!"
-        android:textColor="#AAAAAA"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvTitle" />
+        android:textColor="#8888AA"
+        android:textSize="14sp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="16dp" />
 
-    <GridLayout
-        android:id="@+id/filterGrid"
-        android:layout_width="0dp"
+    <!-- ROW 2: Filter Grid (8 cards, 2 col x 4 row) -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvFilters"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
-        android:columnCount="4"
-        android:rowCount="2"
-        app:layout_constraintBottom_toTopOf="@id/btnContinue"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvSubtitle" />
+        android:layout_weight="1" />
 
+    <!-- ROW 3: Lanjutkan Button -->
     <Button
         android:id="@+id/btnContinue"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:backgroundTint="#7C3AED"
         android:text="Lanjutkan →"
         android:textColor="#FFFFFF"
-        android:textSize="18sp"
+        android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:backgroundTint="#5B35D5"
+        android:layout_marginTop="12dp"
+        android:stateListAnimator="@null" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

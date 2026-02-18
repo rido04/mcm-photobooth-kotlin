@@ -5,18 +5,16 @@ import android.graphics.Bitmap
 import android.hardware.usb.UsbDevice
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.util.Log
-import android.view.Surface
-import android.view.SurfaceHolder
 import android.view.SurfaceView
 import android.view.View
-import android.widget.Button
-import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.photoprintapp.R
-import com.example.photoprintapp.models.FilterType
+import com.example.photoprintapp.adapters.PhotoGridAdapter
 import com.serenegiant.usb.USBMonitor
 import com.serenegiant.usb.UVCCamera
 import java.io.File
@@ -24,350 +22,245 @@ import java.io.FileOutputStream
 
 class PhotoboothActivity : AppCompatActivity() {
 
-    companion object {
-        const val EXTRA_FILTER = "extra_filter"
-        const val EXTRA_PHOTOS = "extra_photos"
-        private const val TAG = "PhotoboothActivity"
-        const val MAX_GRID = 4
-    }
-
-    private lateinit var surfaceView: SurfaceView
-    private lateinit var tvCountdown: TextView
-    private lateinit var tvGridInfo: TextView
-    private lateinit var btnCapture: Button
-    private lateinit var btnRetake: Button
-    private lateinit var btnNext: Button
-    private lateinit var btnGrid1: Button
-    private lateinit var btnGrid2: Button
-    private lateinit var btnGrid3: Button
-    private lateinit var btnGrid4: Button
-    private val photoSlots = arrayOfNulls<ImageView>(MAX_GRID)
+    private var selectedFilter = "NONE"
+    private var gridCount = 4
+    private val capturedPhotos = mutableListOf<String?>()
 
     private var usbMonitor: USBMonitor? = null
     private var uvcCamera: UVCCamera? = null
-    private var isCameraOpen = false
+    private var isCameraReady = false
     private var isCountingDown = false
+    private var isCapturing = false
+    private var countDownTimer: CountDownTimer? = null
 
-    private var selectedFilter = FilterType.NONE
-    private var gridCount = 2
-    private val capturedPhotos = arrayOfNulls<String>(MAX_GRID)
-    private var currentSlot = 0
+    private lateinit var surfaceView: SurfaceView
+    private lateinit var tvStatus: TextView
+    private lateinit var tvFilterLabel: TextView
+    private lateinit var tvCountdown: TextView
+    private lateinit var layoutCountdown: LinearLayout
+    private lateinit var btnCapture: LinearLayout
+    private lateinit var btnRetake: LinearLayout
+    private lateinit var btnOk: LinearLayout
+    private lateinit var btn4Foto: TextView
+    private lateinit var btn6Foto: TextView
+    private lateinit var rvPhotoGrid: RecyclerView
+    private lateinit var photoGridAdapter: PhotoGridAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_photobooth)
 
-        selectedFilter = FilterType.valueOf(
-            intent.getStringExtra(EXTRA_FILTER) ?: FilterType.NONE.name
-        )
+        selectedFilter = intent.getStringExtra("filter") ?: "NONE"
 
-        initViews()
-        initUsbMonitor()
-        updateGridUI()
-    }
-
-    private fun initViews() {
-        surfaceView = findViewById(R.id.surfaceCamera)
+        surfaceView = findViewById<SurfaceView>(R.id.surfaceView)
+        tvStatus = findViewById(R.id.tvStatus)
+        tvFilterLabel = findViewById(R.id.tvFilterLabel)
         tvCountdown = findViewById(R.id.tvCountdown)
-        tvGridInfo = findViewById(R.id.tvGridInfo)
+        layoutCountdown = findViewById(R.id.layoutCountdown)
         btnCapture = findViewById(R.id.btnCapture)
         btnRetake = findViewById(R.id.btnRetake)
-        btnNext = findViewById(R.id.btnNext)
-        btnGrid1 = findViewById(R.id.btnGrid1)
-        btnGrid2 = findViewById(R.id.btnGrid2)
-        btnGrid3 = findViewById(R.id.btnGrid3)
-        btnGrid4 = findViewById(R.id.btnGrid4)
+        btnOk = findViewById(R.id.btnOk)
+        btn4Foto = findViewById(R.id.btn4Foto)
+        btn6Foto = findViewById(R.id.btn6Foto)
+        rvPhotoGrid = findViewById(R.id.rvPhotoGrid)
 
-        photoSlots[0] = findViewById(R.id.imgSlot1)
-        photoSlots[1] = findViewById(R.id.imgSlot2)
-        photoSlots[2] = findViewById(R.id.imgSlot3)
-        photoSlots[3] = findViewById(R.id.imgSlot4)
+        tvFilterLabel.text = "Filter: $selectedFilter"
 
-        btnCapture.setOnClickListener { startCountdown() }
-        btnRetake.setOnClickListener { retakeLastPhoto() }
-        btnNext.setOnClickListener { goToPreview() }
-
-        btnGrid1.setOnClickListener { setGridCount(1) }
-        btnGrid2.setOnClickListener { setGridCount(2) }
-        btnGrid3.setOnClickListener { setGridCount(3) }
-        btnGrid4.setOnClickListener { setGridCount(4) }
-
-        surfaceView.holder.addCallback(object : SurfaceHolder.Callback {
-            override fun surfaceCreated(holder: SurfaceHolder) {
-                Log.d(TAG, "Surface created")
-                if (isCameraOpen) startPreview(holder.surface)
-            }
-            override fun surfaceChanged(holder: SurfaceHolder, f: Int, w: Int, h: Int) {}
-            override fun surfaceDestroyed(holder: SurfaceHolder) {
-                uvcCamera?.stopPreview()
-            }
-        })
+        initPhotoGrid()
+        setupButtons()
+        setupUsbCamera()
     }
 
-    // ─────────────────────────────────────────────
-    // USB / UVC Camera
-    // ─────────────────────────────────────────────
+    private fun initPhotoGrid() {
+        capturedPhotos.clear()
+        repeat(gridCount) { capturedPhotos.add(null) }
 
-    private fun initUsbMonitor() {
-        usbMonitor = USBMonitor(this, object : USBMonitor.OnDeviceConnectListener {
-            override fun onAttach(device: UsbDevice?) {
-                Log.d(TAG, "USB attached: ${device?.deviceName}")
-                runOnUiThread {
-                    Toast.makeText(this@PhotoboothActivity,
-                        "USB Camera terhubung", Toast.LENGTH_SHORT).show()
-                }
-                device?.let { usbMonitor?.requestPermission(it) }
-            }
-
-            override fun onDettach(device: UsbDevice?) {
-                Log.d(TAG, "USB detached")
-                runOnUiThread {
-                    isCameraOpen = false
-                    Toast.makeText(this@PhotoboothActivity,
-                        "USB Camera terputus", Toast.LENGTH_SHORT).show()
-                }
-            }
-
-            override fun onConnect(
-                device: UsbDevice?,
-                ctrlBlock: USBMonitor.UsbControlBlock?,
-                createNew: Boolean
-            ) {
-                Log.d(TAG, "USB connected, opening UVC camera")
-                openUvcCamera(ctrlBlock)
-            }
-
-            override fun onDisconnect(device: UsbDevice?, ctrlBlock: USBMonitor.UsbControlBlock?) {
-                Log.d(TAG, "USB disconnected")
-                closeUvcCamera()
-            }
-
-            override fun onCancel(device: UsbDevice?) {
-                Log.w(TAG, "USB permission cancelled")
-                runOnUiThread {
-                    Toast.makeText(this@PhotoboothActivity,
-                        "Permission USB ditolak", Toast.LENGTH_SHORT).show()
-                }
-            }
-        })
-
-        usbMonitor?.register()
+        // FIX THUMBNAIL: pass reference langsung, bukan .toMutableList() (copy)
+        photoGridAdapter = PhotoGridAdapter(capturedPhotos)
+        rvPhotoGrid.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        rvPhotoGrid.adapter = photoGridAdapter
+        updateButtonStates()
     }
 
-    private fun openUvcCamera(ctrlBlock: USBMonitor.UsbControlBlock?) {
-        try {
-            val camera = UVCCamera()
-            camera.open(ctrlBlock)
+    private fun setupButtons() {
+        findViewById<TextView>(R.id.btnBack).setOnClickListener { finish() }
 
-            // Set format MJPEG 640x480
-            try {
-                camera.setPreviewSize(
-                    UVCCamera.DEFAULT_PREVIEW_WIDTH,
-                    UVCCamera.DEFAULT_PREVIEW_HEIGHT,
-                    UVCCamera.FRAME_FORMAT_MJPEG
-                )
-            } catch (e: Exception) {
-                // Fallback ke YUV
-                camera.setPreviewSize(
-                    UVCCamera.DEFAULT_PREVIEW_WIDTH,
-                    UVCCamera.DEFAULT_PREVIEW_HEIGHT,
-                    UVCCamera.FRAME_FORMAT_YUYV
-                )
-                Log.w(TAG, "MJPEG not supported, using YUYV")
-            }
-
-            uvcCamera = camera
-            isCameraOpen = true
-
-            runOnUiThread {
-                val surface = surfaceView.holder.surface
-                if (surface.isValid) startPreview(surface)
-            }
-        } catch (e: Exception) {
-            Log.e(TAG, "Error opening UVC camera: ${e.message}", e)
-            runOnUiThread {
-                Toast.makeText(this,
-                    "Gagal buka kamera: ${e.message}", Toast.LENGTH_LONG).show()
+        btnCapture.setOnClickListener {
+            if (!isCountingDown && !isCapturing && isCameraReady && hasEmpty()) {
+                startCountdown()
+            } else if (!isCameraReady) {
+                Toast.makeText(this, "Colokkan webcam dulu!", Toast.LENGTH_SHORT).show()
             }
         }
-    }
 
-    private fun startPreview(surface: Surface) {
-        try {
-            uvcCamera?.setPreviewDisplay(surface)
-            uvcCamera?.startPreview()
-            Log.d(TAG, "Preview started")
-        } catch (e: Exception) {
-            Log.e(TAG, "Error starting preview: ${e.message}")
+        btnRetake.setOnClickListener {
+            val idx = capturedPhotos.indexOfLast { it != null }
+            if (idx >= 0) {
+                capturedPhotos[idx] = null
+                photoGridAdapter.notifyItemChanged(idx)
+                updateButtonStates()
+            }
         }
-    }
 
-    private fun closeUvcCamera() {
-        try {
-            uvcCamera?.stopPreview()
-            uvcCamera?.close()
-            uvcCamera?.destroy()
-        } catch (e: Exception) {
-            Log.e(TAG, "Error closing camera: ${e.message}")
-        } finally {
-            uvcCamera = null
-            isCameraOpen = false
+        btnOk.setOnClickListener {
+            if (isComplete()) {
+                val intent = Intent(this, PreviewActivity::class.java)
+                intent.putExtra("filter", selectedFilter)
+                intent.putExtra("gridCount", gridCount)
+                intent.putStringArrayListExtra("photos", ArrayList(capturedPhotos.filterNotNull()))
+                startActivity(intent)
+            } else {
+                Toast.makeText(this, "Foto belum lengkap!", Toast.LENGTH_SHORT).show()
+            }
         }
+
+        btn4Foto.setOnClickListener { changeGrid(4) }
+        btn6Foto.setOnClickListener { changeGrid(6) }
+        updateGridButtons()
     }
 
-    // ─────────────────────────────────────────────
-    // Capture & Countdown
-    // ─────────────────────────────────────────────
+    private fun changeGrid(count: Int) {
+        gridCount = count
+        capturedPhotos.clear()
+        repeat(gridCount) { capturedPhotos.add(null) }
+        photoGridAdapter.notifyDataSetChanged()
+        updateGridButtons()
+        updateButtonStates()
+    }
+
+    private fun updateGridButtons() {
+        btn4Foto.setBackgroundResource(
+            if (gridCount == 4) R.drawable.bg_grid_btn_active else R.drawable.bg_grid_btn_inactive
+        )
+        btn4Foto.setTextColor(if (gridCount == 4) 0xFFFFFFFF.toInt() else 0xFFAAAACC.toInt())
+        btn6Foto.setBackgroundResource(
+            if (gridCount == 6) R.drawable.bg_grid_btn_active else R.drawable.bg_grid_btn_inactive
+        )
+        btn6Foto.setTextColor(if (gridCount == 6) 0xFFFFFFFF.toInt() else 0xFFAAAACC.toInt())
+    }
 
     private fun startCountdown() {
-        if (isCountingDown || currentSlot >= gridCount) return
         isCountingDown = true
-        btnCapture.isEnabled = false
-
-        tvCountdown.visibility = View.VISIBLE
-
-        object : CountDownTimer(3000, 1000) {
-            override fun onTick(millisUntilFinished: Long) {
-                val sec = (millisUntilFinished / 1000) + 1
-                runOnUiThread { tvCountdown.text = sec.toString() }
+        layoutCountdown.visibility = View.VISIBLE
+        updateButtonStates()
+        countDownTimer = object : CountDownTimer(1000, 1000) {
+            override fun onTick(ms: Long) {
+                tvCountdown.text = ((ms / 1000) + 1).toString()
             }
-
             override fun onFinish() {
-                runOnUiThread {
-                    tvCountdown.text = "📸"
-                    capturePhoto()
-                }
+                layoutCountdown.visibility = View.GONE
+                isCountingDown = false
+                capturePhoto()
             }
         }.start()
     }
 
     private fun capturePhoto() {
+        if (isCapturing) return
+        isCapturing = true
+        updateButtonStates()
+
         uvcCamera?.setFrameCallback({ frame ->
-            // Frame datang sekali, langsung capture
-            uvcCamera?.setFrameCallback(null, UVCCamera.PIXEL_FORMAT_NV21)
+            if (frame != null) {
+                val w = UVCCamera.DEFAULT_PREVIEW_WIDTH
+                val h = UVCCamera.DEFAULT_PREVIEW_HEIGHT
+                val bmp = Bitmap.createBitmap(w, h, Bitmap.Config.RGB_565)
+                bmp.copyPixelsFromBuffer(frame)
 
-            // FIX: Convert ByteBuffer to ByteArray
-            val byteArray = ByteArray(frame.remaining())
-            frame.get(byteArray)
-
-            val bitmap = frameToBitmap(
-                byteArray,
-                UVCCamera.DEFAULT_PREVIEW_WIDTH,
-                UVCCamera.DEFAULT_PREVIEW_HEIGHT
-            )
-
-            bitmap?.let { bmp ->
-                val path = saveBitmap(bmp, currentSlot)
+                // FIX FREEZE: matikan callback dari UI thread bukan dari callback thread
                 runOnUiThread {
-                    capturedPhotos[currentSlot] = path
-                    photoSlots[currentSlot]?.setImageBitmap(bmp)
-                    photoSlots[currentSlot]?.visibility = View.VISIBLE
-                    currentSlot++
-                    tvCountdown.visibility = View.GONE
-                    isCountingDown = false
-                    updateGridUI()
+                    uvcCamera?.setFrameCallback(null, UVCCamera.PIXEL_FORMAT_RGB565)
+                    savePhoto(bmp)
                 }
-            } ?: runOnUiThread {
-                Toast.makeText(this, "Gagal capture frame", Toast.LENGTH_SHORT).show()
-                tvCountdown.visibility = View.GONE
-                isCountingDown = false
-                btnCapture.isEnabled = true
             }
-        }, UVCCamera.PIXEL_FORMAT_NV21)
+        }, UVCCamera.PIXEL_FORMAT_RGB565)
     }
 
-    private fun frameToBitmap(frame: ByteArray, width: Int, height: Int): Bitmap? {
-        return try {
-            val yuv = android.graphics.YuvImage(
-                frame,
-                android.graphics.ImageFormat.NV21,
-                width, height, null
-            )
-            val out = java.io.ByteArrayOutputStream()
-            yuv.compressToJpeg(android.graphics.Rect(0, 0, width, height), 90, out)
-            val bytes = out.toByteArray()
-            android.graphics.BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
+    private fun savePhoto(bitmap: Bitmap) {
+        try {
+            val dir = getExternalFilesDir(android.os.Environment.DIRECTORY_PICTURES)
+            val file = File(dir, "photo_${System.currentTimeMillis()}.jpg")
+            FileOutputStream(file).use { bitmap.compress(Bitmap.CompressFormat.JPEG, 90, it) }
+
+            val idx = capturedPhotos.indexOfFirst { it == null }
+            if (idx >= 0) {
+                capturedPhotos[idx] = file.absolutePath
+                photoGridAdapter.notifyItemChanged(idx)
+            }
         } catch (e: Exception) {
-            Log.e(TAG, "frameToBitmap error: ${e.message}")
-            null
+            Toast.makeText(this, "Error simpan foto: ${e.message}", Toast.LENGTH_SHORT).show()
+        } finally {
+            isCapturing = false
+            updateButtonStates()
         }
     }
 
-    private fun saveBitmap(bitmap: Bitmap, index: Int): String {
-        val file = File(cacheDir, "photo_$index.jpg")
-        FileOutputStream(file).use { out ->
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 90, out)
+    private fun hasEmpty() = capturedPhotos.any { it == null }
+    private fun isComplete() = capturedPhotos.none { it == null }
+
+    private fun updateButtonStates() {
+        val canCapture = hasEmpty() && !isCountingDown && !isCapturing && isCameraReady
+        btnCapture.alpha = if (canCapture) 1f else 0.5f
+        btnOk.alpha = if (isComplete()) 1f else 0.4f
+    }
+
+    // ─── USB Camera ───────────────────────────────────────────────────
+
+    private fun setupUsbCamera() {
+        usbMonitor = USBMonitor(this, object : USBMonitor.OnDeviceConnectListener {
+            override fun onAttach(device: UsbDevice?) { usbMonitor?.requestPermission(device) }
+            override fun onConnect(device: UsbDevice?, ctrlBlock: USBMonitor.UsbControlBlock?, createNew: Boolean) { openCamera(ctrlBlock) }
+            override fun onDisconnect(device: UsbDevice?, ctrlBlock: USBMonitor.UsbControlBlock?) { closeCamera() }
+            override fun onDettach(device: UsbDevice?) {
+                runOnUiThread {
+                    tvStatus.visibility = View.VISIBLE
+                    isCameraReady = false
+                    updateButtonStates()
+                }
+            }
+            override fun onCancel(device: UsbDevice?) {}
+        })
+    }
+
+    private fun openCamera(ctrlBlock: USBMonitor.UsbControlBlock?) {
+        uvcCamera = UVCCamera()
+        uvcCamera?.open(ctrlBlock)
+        try {
+            uvcCamera?.setPreviewSize(
+                UVCCamera.DEFAULT_PREVIEW_WIDTH,
+                UVCCamera.DEFAULT_PREVIEW_HEIGHT,
+                UVCCamera.FRAME_FORMAT_MJPEG
+            )
+        } catch (e: Exception) {
+            uvcCamera?.setPreviewSize(
+                UVCCamera.DEFAULT_PREVIEW_WIDTH,
+                UVCCamera.DEFAULT_PREVIEW_HEIGHT,
+                UVCCamera.FRAME_FORMAT_YUYV
+            )
         }
-        return file.absolutePath
-    }
-
-    // ─────────────────────────────────────────────
-    // Grid & UI
-    // ─────────────────────────────────────────────
-
-    private fun setGridCount(count: Int) {
-        gridCount = count
-        currentSlot = 0
-        capturedPhotos.fill(null)
-        photoSlots.forEach { it?.setImageDrawable(null); it?.visibility = View.INVISIBLE }
-        updateGridUI()
-    }
-
-    private fun updateGridUI() {
-        tvGridInfo.text = "Foto $currentSlot / $gridCount"
-
-        val allDone = currentSlot >= gridCount
-        btnCapture.isEnabled = !allDone && !isCountingDown && isCameraOpen
-        btnCapture.text = if (isCountingDown) "WAIT..." else "📸 CAPTURE"
-        btnNext.isEnabled = allDone
-        btnRetake.isEnabled = currentSlot > 0
-
-        // Tampilkan slot sesuai gridCount
-        for (i in 0 until MAX_GRID) {
-            photoSlots[i]?.visibility = if (i < gridCount) View.VISIBLE else View.GONE
-        }
-
-        // Update grid button selection
-        listOf(btnGrid1, btnGrid2, btnGrid3, btnGrid4).forEachIndexed { i, btn ->
-            btn.alpha = if (i + 1 == gridCount) 1f else 0.5f
+        uvcCamera?.setPreviewDisplay(surfaceView.holder)
+        uvcCamera?.startPreview()
+        runOnUiThread {
+            isCameraReady = true
+            tvStatus.visibility = View.GONE
+            updateButtonStates()
         }
     }
 
-    private fun retakeLastPhoto() {
-        if (currentSlot <= 0) return
-        currentSlot--
-        capturedPhotos[currentSlot] = null
-        photoSlots[currentSlot]?.setImageDrawable(null)
-        updateGridUI()
+    private fun closeCamera() {
+        uvcCamera?.stopPreview()
+        uvcCamera?.close()
+        uvcCamera?.destroy()
+        uvcCamera = null
+        isCameraReady = false
     }
 
-    private fun goToPreview() {
-        val photos = capturedPhotos.filterNotNull().toTypedArray()
-        val intent = Intent(this, PreviewActivity::class.java).apply {
-            putExtra(PreviewActivity.EXTRA_PHOTOS, photos)
-            putExtra(PreviewActivity.EXTRA_FILTER, selectedFilter.name)
-            putExtra(PreviewActivity.EXTRA_GRID_COUNT, gridCount)
-        }
-        startActivity(intent)
-    }
-
-    // ─────────────────────────────────────────────
-    // Lifecycle
-    // ─────────────────────────────────────────────
-
-    override fun onResume() {
-        super.onResume()
-        usbMonitor?.register()
-    }
-
-    override fun onPause() {
-        super.onPause()
-        usbMonitor?.unregister()
-    }
-
+    override fun onStart() { super.onStart(); usbMonitor?.register() }
+    override fun onStop() { super.onStop(); usbMonitor?.unregister() }
     override fun onDestroy() {
         super.onDestroy()
-        closeUvcCamera()
+        countDownTimer?.cancel()
+        closeCamera()
         usbMonitor?.destroy()
     }
 }

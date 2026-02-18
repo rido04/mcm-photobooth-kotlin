@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.photoprintapp-mergeDebugResources-33:/values-port/values-port.xml",
+            "outputFile": "com.example.photoprintapp-mergeDebugResources-36:/values-port/values-port.xml",
             "map": [
                 {
-                    "source": "C:\\gradle-home\\caches\\9.0-milestone-1\\transforms\\818440df55c5b22950fdce982f2f1b19\\transformed\\appcompat-1.6.1\\res\\values-port\\values-port.xml",
+                    "source": "C:\\Users\\sandi\\.gradle\\caches\\9.0-milestone-1\\transforms\\818440df55c5b22950fdce982f2f1b19\\transformed\\appcompat-1.6.1\\res\\values-port\\values-port.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

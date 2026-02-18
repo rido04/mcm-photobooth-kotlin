@@ -1,115 +1,183 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#1A1A2E">
+    android:orientation="vertical"
+    android:background="#0D0D1A">
 
-    <!-- Preview foto (kiri 75%) -->
-    <FrameLayout
-        android:id="@+id/frameStickers"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@id/bottomActions"
-        app:layout_constraintEnd_toStartOf="@id/stickerPanel"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-            android:id="@+id/imgPreview"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="fitCenter"
-            android:background="#000000" />
-    </FrameLayout>
-
-    <!-- Sticker panel (kanan 25%) -->
+    <!-- TOP BAR -->
     <LinearLayout
-        android:id="@+id/stickerPanel"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        android:background="#16213E"
-        android:padding="8dp"
-        app:layout_constraintBottom_toTopOf="@id/bottomActions"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/frameStickers"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintWidth_percent="0.22">
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="12dp"
+        android:background="#0D0D1A">
 
         <TextView
-            android:layout_width="match_parent"
+            android:id="@+id/btnBack"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="🎨 Sticker"
+            android:text="←"
             android:textColor="#FFFFFF"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:padding="8dp"
-            android:background="#2A2A4A"
-            android:layout_marginBottom="8dp"/>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvStickers"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"/>
+            android:textSize="22sp"
+            android:padding="8dp" />
 
         <TextView
-            android:id="@+id/tvStatus"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Pilih sticker lalu tap foto"
-            android:textColor="#AAAAAA"
-            android:textSize="11sp"
-            android:gravity="center"
-            android:padding="8dp"/>
+            android:layout_weight="1"
+            android:text="Preview Hasil"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:gravity="center" />
+
+        <View android:layout_width="40dp" android:layout_height="1dp" />
     </LinearLayout>
 
-    <!-- Bottom action bar -->
+    <!-- ROW 1: Preview + Sticker (80%) -->
     <LinearLayout
-        android:id="@+id/bottomActions"
-        android:layout_width="0dp"
-        android:layout_height="60dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="8"
+        android:orientation="horizontal">
+
+        <!-- COL 1: Photo + Frame + Sticker Canvas (75%) -->
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:background="#000000">
+
+            <!-- Composite view: frame + photos + stickers -->
+            <com.example.photoprintapp.views.PhotoCanvasView
+                android:id="@+id/photoCanvas"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </FrameLayout>
+
+        <!-- COL 2: Sticker Picker (25%) -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:background="#1A1A35">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="🎨 Sticker"
+                android:textColor="#FFFFFF"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:padding="8dp"
+                android:background="#252550" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvStickers"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:padding="4dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Pilih sticker lalu\nklik di foto"
+                android:textColor="#8888AA"
+                android:textSize="10sp"
+                android:gravity="center"
+                android:padding="6dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- ROW 2: Action Buttons (20%) -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
         android:orientation="horizontal"
-        android:background="#0F0F1A"
-        android:padding="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        android:padding="12dp"
+        android:gravity="center"
+        android:background="#0D0D1A">
 
-        <Button
-            android:id="@+id/btnBack"
+        <!-- Simpan -->
+        <LinearLayout
+            android:id="@+id/btnSimpan"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="← Ulang"
-            android:textSize="14sp"
-            android:backgroundTint="#6B7280"
-            android:layout_marginEnd="8dp"/>
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:background="@drawable/bg_btn_simpan"
+            android:layout_marginEnd="8dp">
 
-        <Button
-            android:id="@+id/btnSave"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="💾 Simpan"
-            android:textSize="14sp"
-            android:backgroundTint="#10B981"
-            android:enabled="false"
-            android:layout_marginEnd="8dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="💾"
+                android:textSize="16sp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" Simpan"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+        </LinearLayout>
 
-        <Button
+        <!-- Print -->
+        <LinearLayout
             android:id="@+id/btnPrint"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="🖨️ Print"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            android:backgroundTint="#7C3AED"
-            android:enabled="false"/>
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:background="@drawable/bg_btn_print"
+            android:layout_marginEnd="8dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🖨"
+                android:textSize="16sp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" Print"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Ulang -->
+        <LinearLayout
+            android:id="@+id/btnUlang"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:background="@drawable/bg_btn_ulang">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🔄"
+                android:textSize="16sp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" Ulang"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+        </LinearLayout>
     </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

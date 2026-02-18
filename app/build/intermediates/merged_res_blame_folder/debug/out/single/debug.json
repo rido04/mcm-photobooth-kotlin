@@ -1,34 +1,114 @@
 [
     {
-        "merged": "com.example.photoprintapp-merged_res-35:/layout_activity_photobooth.xml.flat",
-        "source": "com.example.photoprintapp-main-37:/layout/activity_photobooth.xml"
+        "merged": "C:\\Users\\sandi\\.gradle\\daemon\\9.0-milestone-1\\com.example.photoprintapp-merged_res-38:\\layout_activity_photobooth.xml.flat",
+        "source": "C:\\Users\\sandi\\.gradle\\daemon\\9.0-milestone-1\\com.example.photoprintapp-main-40:\\layout\\activity_photobooth.xml"
     },
     {
-        "merged": "com.example.photoprintapp-merged_res-35:/xml_device_filter.xml.flat",
-        "source": "com.example.photoprintapp-main-37:/xml/device_filter.xml"
+        "merged": "C:\\Users\\sandi\\.gradle\\daemon\\9.0-milestone-1\\com.example.photoprintapp-merged_res-38:\\drawable_bg_sticker_item.xml.flat",
+        "source": "C:\\Users\\sandi\\.gradle\\daemon\\9.0-milestone-1\\com.example.photoprintapp-main-40:\\drawable\\bg_sticker_item.xml"
     },
     {
-        "merged": "com.example.photoprintapp-merged_res-35:/layout_activity_preview.xml.flat",
-        "source": "com.example.photoprintapp-main-37:/layout/activity_preview.xml"
+        "merged": "C:\\Users\\sandi\\.gradle\\daemon\\9.0-milestone-1\\com.example.photoprintapp-merged_res-38:\\drawable_gradient_overlay.xml.flat",
+        "source": "C:\\Users\\sandi\\.gradle\\daemon\\9.0-milestone-1\\com.example.photoprintapp-main-40:\\drawable\\gradient_overlay.xml"
     },
     {
-        "merged": "com.example.photoprintapp-merged_res-35:/layout_activity_filter_selection.xml.flat",
-        "source": "com.example.photoprintapp-main-37:/layout/activity_filter_selection.xml"
+        "merged": "C:\\Users\\sandi\\.gradle\\daemon\\9.0-milestone-1\\com.example.photoprintapp-merged_res-38:\\drawable_border_selected.xml.flat",
+        "source": "C:\\Users\\sandi\\.gradle\\daemon\\9.0-milestone-1\\com.example.photoprintapp-main-40:\\drawable\\border_selected.xml"
     },
     {
-        "merged": "com.example.photoprintapp-merged_res-35:/layout_item_sticker.xml.flat",
-        "source": "com.example.photoprintapp-main-37:/layout/item_sticker.xml"
+        "merged": "C:\\Users\\sandi\\.gradle\\daemon\\9.0-milestone-1\\com.example.photoprintapp-merged_res-38:\\drawable_bg_btn_print.xml.flat",
+        "source": "C:\\Users\\sandi\\.gradle\\daemon\\9.0-milestone-1\\com.example.photoprintapp-main-40:\\drawable\\bg_btn_print.xml"
     },
     {
-        "merged": "com.example.photoprintapp-merged_res-35:/layout_item_filter_card.xml.flat",
-        "source": "com.example.photoprintapp-main-37:/layout/item_filter_card.xml"
+        "merged": "com.example.photoprintapp-merged_res-38:/layout_item_filter_card.xml.flat",
+        "source": "com.example.photoprintapp-main-40:/layout/item_filter_card.xml"
     },
     {
-        "merged": "com.example.photoprintapp-merged_res-35:/xml_file_paths.xml.flat",
-        "source": "com.example.photoprintapp-main-37:/xml/file_paths.xml"
+        "merged": "com.example.photoprintapp-merged_res-38:/drawable_gradient_card_overlay.xml.flat",
+        "source": "com.example.photoprintapp-main-40:/drawable/gradient_card_overlay.xml"
     },
     {
-        "merged": "com.example.photoprintapp-merged_res-35:/layout_activity_main.xml.flat",
-        "source": "com.example.photoprintapp-main-37:/layout/activity_main.xml"
+        "merged": "C:\\Users\\sandi\\.gradle\\daemon\\9.0-milestone-1\\com.example.photoprintapp-merged_res-38:\\layout_item_photo_slot.xml.flat",
+        "source": "C:\\Users\\sandi\\.gradle\\daemon\\9.0-milestone-1\\com.example.photoprintapp-main-40:\\layout\\item_photo_slot.xml"
+    },
+    {
+        "merged": "C:\\Users\\sandi\\.gradle\\daemon\\9.0-milestone-1\\com.example.photoprintapp-merged_res-38:\\layout_item_sticker.xml.flat",
+        "source": "C:\\Users\\sandi\\.gradle\\daemon\\9.0-milestone-1\\com.example.photoprintapp-main-40:\\layout\\item_sticker.xml"
+    },
+    {
+        "merged": "C:\\Users\\sandi\\.gradle\\daemon\\9.0-milestone-1\\com.example.photoprintapp-merged_res-38:\\drawable_bg_grid_btn_active.xml.flat",
+        "source": "C:\\Users\\sandi\\.gradle\\daemon\\9.0-milestone-1\\com.example.photoprintapp-main-40:\\drawable\\bg_grid_btn_active.xml"
+    },
+    {
+        "merged": "C:\\Users\\sandi\\.gradle\\daemon\\9.0-milestone-1\\com.example.photoprintapp-merged_res-38:\\xml_device_filter.xml.flat",
+        "source": "C:\\Users\\sandi\\.gradle\\daemon\\9.0-milestone-1\\com.example.photoprintapp-main-40:\\xml\\device_filter.xml"
+    },
+    {
+        "merged": "C:\\Users\\sandi\\.gradle\\daemon\\9.0-milestone-1\\com.example.photoprintapp-merged_res-38:\\drawable_bg_btn_ok.xml.flat",
+        "source": "C:\\Users\\sandi\\.gradle\\daemon\\9.0-milestone-1\\com.example.photoprintapp-main-40:\\drawable\\bg_btn_ok.xml"
+    },
+    {
+        "merged": "C:\\Users\\sandi\\.gradle\\daemon\\9.0-milestone-1\\com.example.photoprintapp-merged_res-38:\\drawable_bg_btn_simpan.xml.flat",
+        "source": "C:\\Users\\sandi\\.gradle\\daemon\\9.0-milestone-1\\com.example.photoprintapp-main-40:\\drawable\\bg_btn_simpan.xml"
+    },
+    {
+        "merged": "C:\\Users\\sandi\\.gradle\\daemon\\9.0-milestone-1\\com.example.photoprintapp-merged_res-38:\\drawable_bg_btn_ulang.xml.flat",
+        "source": "C:\\Users\\sandi\\.gradle\\daemon\\9.0-milestone-1\\com.example.photoprintapp-main-40:\\drawable\\bg_btn_ulang.xml"
+    },
+    {
+        "merged": "C:\\Users\\sandi\\.gradle\\daemon\\9.0-milestone-1\\com.example.photoprintapp-merged_res-38:\\layout_activity_main.xml.flat",
+        "source": "C:\\Users\\sandi\\.gradle\\daemon\\9.0-milestone-1\\com.example.photoprintapp-main-40:\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\sandi\\.gradle\\daemon\\9.0-milestone-1\\com.example.photoprintapp-merged_res-38:\\drawable_ic_add_photo.xml.flat",
+        "source": "C:\\Users\\sandi\\.gradle\\daemon\\9.0-milestone-1\\com.example.photoprintapp-main-40:\\drawable\\ic_add_photo.xml"
+    },
+    {
+        "merged": "C:\\Users\\sandi\\.gradle\\daemon\\9.0-milestone-1\\com.example.photoprintapp-merged_res-38:\\drawable_bg_sticker_item_selected.xml.flat",
+        "source": "C:\\Users\\sandi\\.gradle\\daemon\\9.0-milestone-1\\com.example.photoprintapp-main-40:\\drawable\\bg_sticker_item_selected.xml"
+    },
+    {
+        "merged": "C:\\Users\\sandi\\.gradle\\daemon\\9.0-milestone-1\\com.example.photoprintapp-merged_res-38:\\drawable_bg_photo_slot.xml.flat",
+        "source": "C:\\Users\\sandi\\.gradle\\daemon\\9.0-milestone-1\\com.example.photoprintapp-main-40:\\drawable\\bg_photo_slot.xml"
+    },
+    {
+        "merged": "C:\\Users\\sandi\\.gradle\\daemon\\9.0-milestone-1\\com.example.photoprintapp-merged_res-38:\\drawable_bg_filter_card.xml.flat",
+        "source": "C:\\Users\\sandi\\.gradle\\daemon\\9.0-milestone-1\\com.example.photoprintapp-main-40:\\drawable\\bg_filter_card.xml"
+    },
+    {
+        "merged": "C:\\Users\\sandi\\.gradle\\daemon\\9.0-milestone-1\\com.example.photoprintapp-merged_res-38:\\drawable_bg_btn_retake.xml.flat",
+        "source": "C:\\Users\\sandi\\.gradle\\daemon\\9.0-milestone-1\\com.example.photoprintapp-main-40:\\drawable\\bg_btn_retake.xml"
+    },
+    {
+        "merged": "C:\\Users\\sandi\\.gradle\\daemon\\9.0-milestone-1\\com.example.photoprintapp-merged_res-38:\\drawable_bg_filter_card_selected.xml.flat",
+        "source": "C:\\Users\\sandi\\.gradle\\daemon\\9.0-milestone-1\\com.example.photoprintapp-main-40:\\drawable\\bg_filter_card_selected.xml"
+    },
+    {
+        "merged": "C:\\Users\\sandi\\.gradle\\daemon\\9.0-milestone-1\\com.example.photoprintapp-merged_res-38:\\layout_activity_preview.xml.flat",
+        "source": "C:\\Users\\sandi\\.gradle\\daemon\\9.0-milestone-1\\com.example.photoprintapp-main-40:\\layout\\activity_preview.xml"
+    },
+    {
+        "merged": "C:\\Users\\sandi\\.gradle\\daemon\\9.0-milestone-1\\com.example.photoprintapp-merged_res-38:\\drawable_bg_grid_btn_inactive.xml.flat",
+        "source": "C:\\Users\\sandi\\.gradle\\daemon\\9.0-milestone-1\\com.example.photoprintapp-main-40:\\drawable\\bg_grid_btn_inactive.xml"
+    },
+    {
+        "merged": "C:\\Users\\sandi\\.gradle\\daemon\\9.0-milestone-1\\com.example.photoprintapp-merged_res-38:\\xml_file_paths.xml.flat",
+        "source": "C:\\Users\\sandi\\.gradle\\daemon\\9.0-milestone-1\\com.example.photoprintapp-main-40:\\xml\\file_paths.xml"
+    },
+    {
+        "merged": "C:\\Users\\sandi\\.gradle\\daemon\\9.0-milestone-1\\com.example.photoprintapp-merged_res-38:\\layout_activity_filter_selection.xml.flat",
+        "source": "C:\\Users\\sandi\\.gradle\\daemon\\9.0-milestone-1\\com.example.photoprintapp-main-40:\\layout\\activity_filter_selection.xml"
+    },
+    {
+        "merged": "C:\\Users\\sandi\\.gradle\\daemon\\9.0-milestone-1\\com.example.photoprintapp-merged_res-38:\\layout_item_filter_card.xml.flat",
+        "source": "C:\\Users\\sandi\\.gradle\\daemon\\9.0-milestone-1\\com.example.photoprintapp-main-40:\\layout\\item_filter_card.xml"
+    },
+    {
+        "merged": "C:\\Users\\sandi\\.gradle\\daemon\\9.0-milestone-1\\com.example.photoprintapp-merged_res-38:\\drawable_bg_btn_capture.xml.flat",
+        "source": "C:\\Users\\sandi\\.gradle\\daemon\\9.0-milestone-1\\com.example.photoprintapp-main-40:\\drawable\\bg_btn_capture.xml"
+    },
+    {
+        "merged": "C:\\Users\\sandi\\.gradle\\daemon\\9.0-milestone-1\\com.example.photoprintapp-merged_res-38:\\drawable_ic_check_circle.xml.flat",
+        "source": "C:\\Users\\sandi\\.gradle\\daemon\\9.0-milestone-1\\com.example.photoprintapp-main-40:\\drawable\\ic_check_circle.xml"
     }
 ]

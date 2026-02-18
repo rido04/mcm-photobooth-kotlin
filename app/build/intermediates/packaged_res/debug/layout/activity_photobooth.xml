@@ -1,170 +1,252 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#1A1A2E">
+    android:orientation="vertical"
+    android:background="#0D0D1A">
 
-    <!-- Camera Preview (kiri, 60%) -->
-    <SurfaceView
-        android:id="@+id/surfaceCamera"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@id/bottomBar"
-        app:layout_constraintEnd_toStartOf="@id/rightPanel"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintWidth_percent="0.58" />
-
-    <!-- Countdown overlay -->
-    <TextView
-        android:id="@+id/tvCountdown"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#FFFFFF"
-        android:textSize="120sp"
-        android:textStyle="bold"
-        android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@id/bottomBar"
-        app:layout_constraintEnd_toStartOf="@id/rightPanel"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <!-- Right Panel (kanan, 42%) -->
+    <!-- TOP BAR: back + filter name -->
     <LinearLayout
-        android:id="@+id/rightPanel"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        android:padding="12dp"
-        android:background="#16213E"
-        app:layout_constraintBottom_toTopOf="@id/bottomBar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/surfaceCamera"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="12dp"
+        android:background="#0D0D1A">
 
-        <!-- Grid count selector -->
         <TextView
+            android:id="@+id/btnBack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Jumlah Foto"
-            android:textColor="#AAAAAA"
-            android:textSize="13sp"
-            android:layout_marginBottom="6dp"/>
+            android:text="←"
+            android:textColor="#FFFFFF"
+            android:textSize="22sp"
+            android:padding="8dp" />
 
+        <TextView
+            android:id="@+id/tvFilterLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Filter: No Filter"
+            android:textColor="#CCCCEE"
+            android:textSize="15sp"
+            android:layout_marginStart="4dp" />
+    </LinearLayout>
+
+    <!-- ROW 1: Camera (70%) -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="7"
+        android:orientation="horizontal">
+
+        <!-- COL 1: Camera Preview (75%) -->
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:background="#000000">
+
+            <SurfaceView
+                android:id="@+id/surfaceView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <!-- Camera not ready message -->
+            <TextView
+                android:id="@+id/tvStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Colokkan USB webcam untuk memulai"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"
+                android:background="#AA000000"
+                android:padding="12dp"
+                android:gravity="center" />
+
+            <!-- Countdown overlay -->
+            <LinearLayout
+                android:id="@+id/layoutCountdown"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="#AA000000"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/tvCountdown"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3"
+                    android:textColor="#FFFFFF"
+                    android:textSize="96sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Get Ready!"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20sp"
+                    android:layout_marginTop="8dp" />
+            </LinearLayout>
+        </FrameLayout>
+
+        <!-- COL 2: Action Buttons (25%) -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:padding="8dp"
+            android:background="#0D0D1A">
+
+            <!-- CAPTURE -->
+            <LinearLayout
+                android:id="@+id/btnCapture"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="@drawable/bg_btn_capture"
+                android:layout_marginBottom="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="⚡"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="CAPTURE"
+                    android:textColor="#FFFFFF"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="4dp" />
+            </LinearLayout>
+
+            <!-- RETAKE -->
+            <LinearLayout
+                android:id="@+id/btnRetake"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="@drawable/bg_btn_retake"
+                android:layout_marginBottom="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🔄"
+                    android:textSize="22sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="RETAKE"
+                    android:textColor="#FFA000"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="4dp" />
+            </LinearLayout>
+
+            <!-- OK -->
+            <LinearLayout
+                android:id="@+id/btnOk"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="@drawable/bg_btn_ok">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="✓"
+                    android:textColor="#FFFFFF"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="OK"
+                    android:textColor="#FFFFFF"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="4dp" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- ROW 2: Photo Grid Panel (30%) -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:orientation="vertical"
+        android:background="#1A1A35"
+        android:padding="12dp">
+
+        <!-- ROW 2.1: "Pilih Frame" + grid selector -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginBottom="12dp">
+            android:gravity="center_vertical"
+            android:layout_marginBottom="10dp">
 
-            <Button android:id="@+id/btnGrid1"
-                android:layout_width="0dp" android:layout_height="40dp"
-                android:layout_weight="1" android:text="1"
-                android:textSize="14sp" android:layout_marginEnd="4dp"
-                android:backgroundTint="#7C3AED"/>
-            <Button android:id="@+id/btnGrid2"
-                android:layout_width="0dp" android:layout_height="40dp"
-                android:layout_weight="1" android:text="2"
-                android:textSize="14sp" android:layout_marginEnd="4dp"
-                android:backgroundTint="#7C3AED"/>
-            <Button android:id="@+id/btnGrid3"
-                android:layout_width="0dp" android:layout_height="40dp"
-                android:layout_weight="1" android:text="3"
-                android:textSize="14sp" android:layout_marginEnd="4dp"
-                android:backgroundTint="#7C3AED"/>
-            <Button android:id="@+id/btnGrid4"
-                android:layout_width="0dp" android:layout_height="40dp"
-                android:layout_weight="1" android:text="4"
-                android:textSize="14sp"
-                android:backgroundTint="#7C3AED"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Pilih Frame"
+                android:textColor="#FFFFFF"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <!-- 4 Foto button -->
+            <TextView
+                android:id="@+id/btn4Foto"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:text="4 Foto"
+                android:textColor="#FFFFFF"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:paddingHorizontal="16dp"
+                android:background="@drawable/bg_grid_btn_active"
+                android:layout_marginEnd="6dp" />
+
+            <!-- 6 Foto button -->
+            <TextView
+                android:id="@+id/btn6Foto"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:text="6 Foto"
+                android:textColor="#AAAACC"
+                android:textSize="13sp"
+                android:gravity="center"
+                android:paddingHorizontal="16dp"
+                android:background="@drawable/bg_grid_btn_inactive" />
         </LinearLayout>
 
-        <!-- Grid info -->
-        <TextView
-            android:id="@+id/tvGridInfo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Foto 0 / 2"
-            android:textColor="#FFFFFF"
-            android:textSize="14sp"
-            android:gravity="center"
-            android:layout_marginBottom="8dp"/>
-
-        <!-- Photo slots 2x2 -->
-        <GridLayout
+        <!-- ROW 2.2: Photo thumbnails -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvPhotoGrid"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:columnCount="2"
-            android:rowCount="2"
-            android:layout_marginBottom="12dp">
+            android:orientation="horizontal" />
 
-            <ImageView android:id="@+id/imgSlot1"
-                android:layout_width="0dp" android:layout_height="0dp"
-                android:layout_columnWeight="1" android:layout_rowWeight="1"
-                android:scaleType="centerCrop" android:layout_margin="4dp"
-                android:background="#2A2A4A" android:visibility="visible"/>
-            <ImageView android:id="@+id/imgSlot2"
-                android:layout_width="0dp" android:layout_height="0dp"
-                android:layout_columnWeight="1" android:layout_rowWeight="1"
-                android:scaleType="centerCrop" android:layout_margin="4dp"
-                android:background="#2A2A4A" android:visibility="visible"/>
-            <ImageView android:id="@+id/imgSlot3"
-                android:layout_width="0dp" android:layout_height="0dp"
-                android:layout_columnWeight="1" android:layout_rowWeight="1"
-                android:scaleType="centerCrop" android:layout_margin="4dp"
-                android:background="#2A2A4A" android:visibility="gone"/>
-            <ImageView android:id="@+id/imgSlot4"
-                android:layout_width="0dp" android:layout_height="0dp"
-                android:layout_columnWeight="1" android:layout_rowWeight="1"
-                android:scaleType="centerCrop" android:layout_margin="4dp"
-                android:background="#2A2A4A" android:visibility="gone"/>
-        </GridLayout>
-
-        <!-- Action buttons -->
-        <Button
-            android:id="@+id/btnCapture"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:text="📸 CAPTURE"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:backgroundTint="#7C3AED"
-            android:layout_marginBottom="8dp"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <Button android:id="@+id/btnRetake"
-                android:layout_width="0dp" android:layout_height="44dp"
-                android:layout_weight="1" android:text="↩ Retake"
-                android:textSize="13sp" android:layout_marginEnd="6dp"
-                android:backgroundTint="#F59E0B" android:enabled="false"/>
-            <Button android:id="@+id/btnNext"
-                android:layout_width="0dp" android:layout_height="44dp"
-                android:layout_weight="1" android:text="OK ✓"
-                android:textSize="13sp"
-                android:backgroundTint="#10B981" android:enabled="false"/>
-        </LinearLayout>
     </LinearLayout>
 
-    <!-- Bottom status bar -->
-    <TextView
-        android:id="@+id/bottomBar"
-        android:layout_width="0dp"
-        android:layout_height="32dp"
-        android:background="#0F0F1A"
-        android:gravity="center_vertical"
-        android:paddingStart="16dp"
-        android:text="Colokkan USB webcam untuk memulai"
-        android:textColor="#AAAAAA"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

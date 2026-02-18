@@ -1,51 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- item_filter_card.xml -->
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/cardFilter"
-    android:layout_width="0dp"
-    android:layout_height="wrap_content"
-    android:layout_margin="6dp"
-    app:cardCornerRadius="12dp"
-    app:cardElevation="4dp"
-    app:strokeColor="#7C3AED"
-    app:strokeWidth="0dp">
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="130dp"
+    android:layout_margin="6dp">
 
-    <RelativeLayout
+    <!-- Background photo dari assets -->
+    <ImageView
+        android:id="@+id/ivBackground"
         android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:background="#16213E">
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:background="@drawable/bg_filter_card" />
 
-        <ImageView
-            android:id="@+id/imgFilterPreview"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerCrop" />
+    <!-- Gradient gelap di bawah supaya text keliatan -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/gradient_card_overlay" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
+    <!-- Selected border overlay -->
+    <View
+        android:id="@+id/viewSelected"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/border_selected"
+        android:visibility="gone" />
+
+    <!-- Text di pojok kiri bawah -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|start"
+        android:orientation="vertical"
+        android:paddingStart="12dp"
+        android:paddingBottom="10dp"
+        android:paddingEnd="12dp">
+
+        <TextView
+            android:id="@+id/tvName"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:background="#AA000000"
-            android:orientation="vertical"
-            android:padding="8dp">
+            android:textColor="#FFFFFF"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:shadowColor="#AA000000"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="4" />
 
-            <TextView
-                android:id="@+id/tvFilterName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#FFFFFF"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+        <TextView
+            android:id="@+id/tvDesc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#DDDDDD"
+            android:textSize="11sp"
+            android:shadowColor="#AA000000"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="4"
+            android:layout_marginTop="1dp" />
+    </LinearLayout>
 
-            <TextView
-                android:id="@+id/tvFilterDesc"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#CCCCCC"
-                android:textSize="11sp"
-                android:maxLines="1" />
-        </LinearLayout>
-    </RelativeLayout>
-</androidx.cardview.widget.CardView>
+    <!-- Checkmark icon saat selected -->
+    <ImageView
+        android:id="@+id/ivCheck"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_gravity="top|end"
+        android:layout_margin="8dp"
+        android:src="@android:drawable/checkbox_on_background"
+        android:visibility="gone" />
+
+</FrameLayout>

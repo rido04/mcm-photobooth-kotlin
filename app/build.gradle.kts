@@ -63,4 +63,11 @@ dependencies {
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
     implementation("androidx.exifinterface:exifinterface:1.3.7")
     implementation("androidx.recyclerview:recyclerview:1.3.2")
+
+    // Glide - image loading
+    implementation("com.github.bumptech.glide:glide:4.16.0")
+    annotationProcessor("com.github.bumptech.glide:compiler:4.16.0")
+
+    // Lifecycle - untuk lifecycleScope di PreviewActivity
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
 }

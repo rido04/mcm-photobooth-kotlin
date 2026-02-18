@@ -20,16 +20,11 @@ public final class ItemStickerBinding implements ViewBinding {
   private final FrameLayout rootView;
 
   @NonNull
-  public final ImageView imgSticker;
+  public final ImageView ivSticker;
 
-  @NonNull
-  public final View viewHighlight;
-
-  private ItemStickerBinding(@NonNull FrameLayout rootView, @NonNull ImageView imgSticker,
-      @NonNull View viewHighlight) {
+  private ItemStickerBinding(@NonNull FrameLayout rootView, @NonNull ImageView ivSticker) {
     this.rootView = rootView;
-    this.imgSticker = imgSticker;
-    this.viewHighlight = viewHighlight;
+    this.ivSticker = ivSticker;
   }
 
   @Override
@@ -59,19 +54,13 @@ public final class ItemStickerBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
-      id = R.id.imgSticker;
-      ImageView imgSticker = ViewBindings.findChildViewById(rootView, id);
-      if (imgSticker == null) {
+      id = R.id.ivSticker;
+      ImageView ivSticker = ViewBindings.findChildViewById(rootView, id);
+      if (ivSticker == null) {
         break missingId;
       }
 
-      id = R.id.viewHighlight;
-      View viewHighlight = ViewBindings.findChildViewById(rootView, id);
-      if (viewHighlight == null) {
-        break missingId;
-      }
-
-      return new ItemStickerBinding((FrameLayout) rootView, imgSticker, viewHighlight);
+      return new ItemStickerBinding((FrameLayout) rootView, ivSticker);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

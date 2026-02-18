@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.photoprintapp-mergeDebugResources-33:/values-large-v4/values-large-v4.xml",
+            "outputFile": "com.example.photoprintapp-mergeDebugResources-36:/values-large-v4/values-large-v4.xml",
             "map": [
                 {
-                    "source": "C:\\gradle-home\\caches\\9.0-milestone-1\\transforms\\818440df55c5b22950fdce982f2f1b19\\transformed\\appcompat-1.6.1\\res\\values-large-v4\\values-large-v4.xml",
+                    "source": "C:\\Users\\sandi\\.gradle\\caches\\9.0-milestone-1\\transforms\\818440df55c5b22950fdce982f2f1b19\\transformed\\appcompat-1.6.1\\res\\values-large-v4\\values-large-v4.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10",
                         "startColumns": "4,4,4,4,4,4,4,4,4",
@@ -14,7 +14,7 @@
                     }
                 },
                 {
-                    "source": "C:\\gradle-home\\caches\\9.0-milestone-1\\transforms\\5e00f626b2b950af2f602e73584cc21f\\transformed\\material-1.11.0\\res\\values-large-v4\\values-large-v4.xml",
+                    "source": "C:\\Users\\sandi\\.gradle\\caches\\9.0-milestone-1\\transforms\\5e00f626b2b950af2f602e73584cc21f\\transformed\\material-1.11.0\\res\\values-large-v4\\values-large-v4.xml",
                     "from": {
                         "startLines": "2,3,4,5",
                         "startColumns": "4,4,4,4",

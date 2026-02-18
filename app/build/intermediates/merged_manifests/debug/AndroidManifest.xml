@@ -54,8 +54,7 @@
             android:name="com.example.photoprintapp.activities.FilterSelectionActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:exported="true"
-            android:launchMode="singleTop"
-            android:screenOrientation="landscape" >
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -69,7 +68,7 @@
             android:name="com.example.photoprintapp.activities.PhotoboothActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:exported="false"
-            android:screenOrientation="landscape" >
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED" />
             </intent-filter>
@@ -84,7 +83,7 @@
             android:name="com.example.photoprintapp.activities.PreviewActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:exported="false"
-            android:screenOrientation="landscape" />
+            android:screenOrientation="portrait" />
 
         <!-- FileProvider -->
         <provider

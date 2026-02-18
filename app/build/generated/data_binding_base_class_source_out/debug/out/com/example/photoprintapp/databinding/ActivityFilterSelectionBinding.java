@@ -5,11 +5,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.GridLayout;
-import android.widget.TextView;
+import android.widget.LinearLayout;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.example.photoprintapp.R;
@@ -19,33 +18,24 @@ import java.lang.String;
 
 public final class ActivityFilterSelectionBinding implements ViewBinding {
   @NonNull
-  private final ConstraintLayout rootView;
+  private final LinearLayout rootView;
 
   @NonNull
   public final Button btnContinue;
 
   @NonNull
-  public final GridLayout filterGrid;
+  public final RecyclerView rvFilters;
 
-  @NonNull
-  public final TextView tvSubtitle;
-
-  @NonNull
-  public final TextView tvTitle;
-
-  private ActivityFilterSelectionBinding(@NonNull ConstraintLayout rootView,
-      @NonNull Button btnContinue, @NonNull GridLayout filterGrid, @NonNull TextView tvSubtitle,
-      @NonNull TextView tvTitle) {
+  private ActivityFilterSelectionBinding(@NonNull LinearLayout rootView,
+      @NonNull Button btnContinue, @NonNull RecyclerView rvFilters) {
     this.rootView = rootView;
     this.btnContinue = btnContinue;
-    this.filterGrid = filterGrid;
-    this.tvSubtitle = tvSubtitle;
-    this.tvTitle = tvTitle;
+    this.rvFilters = rvFilters;
   }
 
   @Override
   @NonNull
-  public ConstraintLayout getRoot() {
+  public LinearLayout getRoot() {
     return rootView;
   }
 
@@ -76,26 +66,13 @@ public final class ActivityFilterSelectionBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.filterGrid;
-      GridLayout filterGrid = ViewBindings.findChildViewById(rootView, id);
-      if (filterGrid == null) {
+      id = R.id.rvFilters;
+      RecyclerView rvFilters = ViewBindings.findChildViewById(rootView, id);
+      if (rvFilters == null) {
         break missingId;
       }
 
-      id = R.id.tvSubtitle;
-      TextView tvSubtitle = ViewBindings.findChildViewById(rootView, id);
-      if (tvSubtitle == null) {
-        break missingId;
-      }
-
-      id = R.id.tvTitle;
-      TextView tvTitle = ViewBindings.findChildViewById(rootView, id);
-      if (tvTitle == null) {
-        break missingId;
-      }
-
-      return new ActivityFilterSelectionBinding((ConstraintLayout) rootView, btnContinue,
-          filterGrid, tvSubtitle, tvTitle);
+      return new ActivityFilterSelectionBinding((LinearLayout) rootView, btnContinue, rvFilters);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

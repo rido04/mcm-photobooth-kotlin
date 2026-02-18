@@ -4,73 +4,57 @@ package com.example.photoprintapp.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.example.photoprintapp.R;
+import com.example.photoprintapp.views.PhotoCanvasView;
 import java.lang.NullPointerException;
 import java.lang.Override;
 import java.lang.String;
 
 public final class ActivityPreviewBinding implements ViewBinding {
   @NonNull
-  private final ConstraintLayout rootView;
+  private final LinearLayout rootView;
 
   @NonNull
-  public final LinearLayout bottomActions;
+  public final TextView btnBack;
 
   @NonNull
-  public final Button btnBack;
+  public final LinearLayout btnPrint;
 
   @NonNull
-  public final Button btnPrint;
+  public final LinearLayout btnSimpan;
 
   @NonNull
-  public final Button btnSave;
+  public final LinearLayout btnUlang;
 
   @NonNull
-  public final FrameLayout frameStickers;
-
-  @NonNull
-  public final ImageView imgPreview;
+  public final PhotoCanvasView photoCanvas;
 
   @NonNull
   public final RecyclerView rvStickers;
 
-  @NonNull
-  public final LinearLayout stickerPanel;
-
-  @NonNull
-  public final TextView tvStatus;
-
-  private ActivityPreviewBinding(@NonNull ConstraintLayout rootView,
-      @NonNull LinearLayout bottomActions, @NonNull Button btnBack, @NonNull Button btnPrint,
-      @NonNull Button btnSave, @NonNull FrameLayout frameStickers, @NonNull ImageView imgPreview,
-      @NonNull RecyclerView rvStickers, @NonNull LinearLayout stickerPanel,
-      @NonNull TextView tvStatus) {
+  private ActivityPreviewBinding(@NonNull LinearLayout rootView, @NonNull TextView btnBack,
+      @NonNull LinearLayout btnPrint, @NonNull LinearLayout btnSimpan,
+      @NonNull LinearLayout btnUlang, @NonNull PhotoCanvasView photoCanvas,
+      @NonNull RecyclerView rvStickers) {
     this.rootView = rootView;
-    this.bottomActions = bottomActions;
     this.btnBack = btnBack;
     this.btnPrint = btnPrint;
-    this.btnSave = btnSave;
-    this.frameStickers = frameStickers;
-    this.imgPreview = imgPreview;
+    this.btnSimpan = btnSimpan;
+    this.btnUlang = btnUlang;
+    this.photoCanvas = photoCanvas;
     this.rvStickers = rvStickers;
-    this.stickerPanel = stickerPanel;
-    this.tvStatus = tvStatus;
   }
 
   @Override
   @NonNull
-  public ConstraintLayout getRoot() {
+  public LinearLayout getRoot() {
     return rootView;
   }
 
@@ -95,39 +79,33 @@ public final class ActivityPreviewBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
-      id = R.id.bottomActions;
-      LinearLayout bottomActions = ViewBindings.findChildViewById(rootView, id);
-      if (bottomActions == null) {
-        break missingId;
-      }
-
       id = R.id.btnBack;
-      Button btnBack = ViewBindings.findChildViewById(rootView, id);
+      TextView btnBack = ViewBindings.findChildViewById(rootView, id);
       if (btnBack == null) {
         break missingId;
       }
 
       id = R.id.btnPrint;
-      Button btnPrint = ViewBindings.findChildViewById(rootView, id);
+      LinearLayout btnPrint = ViewBindings.findChildViewById(rootView, id);
       if (btnPrint == null) {
         break missingId;
       }
 
-      id = R.id.btnSave;
-      Button btnSave = ViewBindings.findChildViewById(rootView, id);
-      if (btnSave == null) {
+      id = R.id.btnSimpan;
+      LinearLayout btnSimpan = ViewBindings.findChildViewById(rootView, id);
+      if (btnSimpan == null) {
         break missingId;
       }
 
-      id = R.id.frameStickers;
-      FrameLayout frameStickers = ViewBindings.findChildViewById(rootView, id);
-      if (frameStickers == null) {
+      id = R.id.btnUlang;
+      LinearLayout btnUlang = ViewBindings.findChildViewById(rootView, id);
+      if (btnUlang == null) {
         break missingId;
       }
 
-      id = R.id.imgPreview;
-      ImageView imgPreview = ViewBindings.findChildViewById(rootView, id);
-      if (imgPreview == null) {
+      id = R.id.photoCanvas;
+      PhotoCanvasView photoCanvas = ViewBindings.findChildViewById(rootView, id);
+      if (photoCanvas == null) {
         break missingId;
       }
 
@@ -137,20 +115,8 @@ public final class ActivityPreviewBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.stickerPanel;
-      LinearLayout stickerPanel = ViewBindings.findChildViewById(rootView, id);
-      if (stickerPanel == null) {
-        break missingId;
-      }
-
-      id = R.id.tvStatus;
-      TextView tvStatus = ViewBindings.findChildViewById(rootView, id);
-      if (tvStatus == null) {
-        break missingId;
-      }
-
-      return new ActivityPreviewBinding((ConstraintLayout) rootView, bottomActions, btnBack,
-          btnPrint, btnSave, frameStickers, imgPreview, rvStickers, stickerPanel, tvStatus);
+      return new ActivityPreviewBinding((LinearLayout) rootView, btnBack, btnPrint, btnSimpan,
+          btnUlang, photoCanvas, rvStickers);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

@@ -1,15 +1,13 @@
 package com.example.photoprintapp.activities
 
+import android.content.Intent
+import android.content.ContentValues
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.graphics.Canvas
-import android.graphics.Paint
 import android.os.Bundle
-import android.view.MotionEvent
-import android.view.View
-import android.widget.Button
-import android.widget.FrameLayout
-import android.widget.ImageView
+import android.os.Environment
+import android.provider.MediaStore
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -17,251 +15,317 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.photoprintapp.R
 import com.example.photoprintapp.adapters.StickerAdapter
-import com.example.photoprintapp.models.FilterType
-import com.example.photoprintapp.models.PlacedSticker
-import com.example.photoprintapp.services.PrintApiService
-import java.io.ByteArrayOutputStream
+import com.example.photoprintapp.views.LayoutConfig
+import com.example.photoprintapp.views.PhotoCanvasView
 import java.io.File
-import java.io.FileOutputStream
 
 class PreviewActivity : AppCompatActivity() {
 
-    companion object {
-        const val EXTRA_PHOTOS = "extra_photos"
-        const val EXTRA_FILTER = "extra_filter"
-        const val EXTRA_GRID_COUNT = "extra_grid_count"
-    }
+    private var photoPaths = listOf<String>()
+    private var selectedFilter = "NONE"
+    private var gridCount = 4
 
-    private lateinit var imgPreview: ImageView
-    private lateinit var frameStickers: FrameLayout
+    private lateinit var photoCanvas: PhotoCanvasView
     private lateinit var rvStickers: RecyclerView
-    private lateinit var btnPrint: Button
-    private lateinit var btnSave: Button
-    private lateinit var btnBack: Button
-    private lateinit var tvStatus: TextView
 
-    private var photoPaths: Array<String> = emptyArray()
-    private var selectedFilter = FilterType.NONE
-    private var gridCount = 1
-    private var compositeBitmap: Bitmap? = null
-    private val placedStickers = mutableListOf<PlacedSticker>()
-    private var selectedStickerRes: Int? = null
+    private val allStickers = listOf(
+        "sticker/3d-glasses.png", "sticker/balloons.png", "sticker/beard.png",
+        "sticker/birthday-cake.png", "sticker/crocodile.png", "sticker/crocodile-love.png",
+        "sticker/february.png", "sticker/flamingo.png", "sticker/gift.png",
+        "sticker/giraffe.png", "sticker/glasses.png", "sticker/hat.png",
+        "sticker/january.png", "sticker/king.png", "sticker/learning.png",
+        "sticker/light-bulb.png", "sticker/mask.png", "sticker/moustache-glasses.png",
+        "sticker/moustache-mexico.png", "sticker/pamela-hat.png", "sticker/panda-bear.png",
+        "sticker/queen.png", "sticker/sun-glasses.png", "sticker/tiger.png"
+    )
 
-    private val printService = PrintApiService()
+    // ─── Layout Config per filter (mirip Flutter) ─────────────────────
+    // Adjust nilai-nilai ini supaya posisi foto pas di frame PNG
+    // cellWidth/cellHeight = ukuran cell dalam fraction (0.0 - 1.0) dari ukuran canvas
+    // leftPadding/topPadding = jarak dari tepi kiri/atas
+    // hGap/vGap = jarak antar cell horizontal/vertikal
+    private fun getLayoutConfig(filter: String, gridCount: Int): LayoutConfig {
+        val key = "${filter.lowercase()}_$gridCount"
+        return when (key) {
+
+            // ── EMOJI ──────────────────────────────────────────────────
+            "emoji_4" -> LayoutConfig(
+                cellWidth = 0.47f,
+                cellHeight = 0.420f,
+                leftPadding = 0.02f,
+                topPadding = 0.057f,
+                hGap = 0.02f,
+                vGap = 0.016f
+            )
+            "emoji_6" -> LayoutConfig(
+                cellWidth = 0.305f,
+                cellHeight = 0.29f,
+                leftPadding = 0.320f,
+                topPadding = 0.059f,
+                hGap = 0.025f,
+                vGap = 0.010f
+            )
+
+            // ── FOOTBALL ───────────────────────────────────────────────
+            "football_4" -> LayoutConfig(
+                cellWidth = 0.45f,
+                cellHeight = 0.42f,
+                leftPadding = 0.04f,
+                topPadding = 0.07f,
+                hGap = 0.024f,
+                vGap = 0.015f
+            )
+            "football_6" -> LayoutConfig(
+                cellWidth = 0.305f,
+                cellHeight = 0.29f,
+                leftPadding = 0.320f,
+                topPadding = 0.058f,
+                hGap = 0.025f,
+                vGap = 0.010f
+            )
+
+            // ── VALENTINE ──────────────────────────────────────────────
+            "valentine_4" -> LayoutConfig(
+                cellWidth = 0.45f,
+                cellHeight = 0.428f,
+                leftPadding = 0.04f,
+                topPadding = 0.05f,
+                hGap = 0.02f,
+                vGap = 0.01f
+            )
+            "valentine_6" -> LayoutConfig(
+                cellWidth = 0.305f,
+                cellHeight = 0.29f,
+                leftPadding = 0.320f,
+                topPadding = 0.055f,
+                hGap = 0.025f,
+                vGap = 0.010f
+            )
+
+            // ── FRIENDSHIP ─────────────────────────────────────────────
+            "friendship_4" -> LayoutConfig(
+                cellWidth = 0.44f,
+                cellHeight = 0.41f,
+                leftPadding = 0.04f,
+                topPadding = 0.09f,
+                hGap = 0.04f,
+                vGap = 0.025f
+            )
+            "friendship_6" -> LayoutConfig(
+                cellWidth = 0.38f,
+                cellHeight = 0.27f,
+                leftPadding = 0.04f,
+                topPadding = 0.08f,
+                hGap = 0.04f,
+                vGap = 0.025f
+            )
+
+            // ── FLOWERS ────────────────────────────────────────────────
+            "flowers_4" -> LayoutConfig(
+                cellWidth = 0.45f,
+                cellHeight = 0.40f,
+                leftPadding = 0.025f,
+                topPadding = 0.08f,
+                hGap = 0.04f,
+                vGap = 0.03f
+            )
+            "flowers_6" -> LayoutConfig(
+                cellWidth = 0.39f,
+                cellHeight = 0.27f,
+                leftPadding = 0.025f,
+                topPadding = 0.07f,
+                hGap = 0.04f,
+                vGap = 0.025f
+            )
+
+            // // ── NONE / DEFAULT ─────────────────────────────────────────
+            // else -> if (gridCount == 6) LayoutConfig(
+            //     cellWidth = 0.40f,
+            //     cellHeight = 0.27f,
+            //     leftPadding = 0.02f,
+            //     topPadding = 0.06f,
+            //     hGap = 0.04f,
+            //     vGap = 0.024f
+            // ) else LayoutConfig(
+            //     cellWidth = 0.45f,
+            //     cellHeight = 0.40f,
+            //     leftPadding = 0.025f,
+            //     topPadding = 0.075f,
+            //     hGap = 0.04f,
+            //     vGap = 0.025f
+            // )
+
+            // ── NONE / DEFAULT ─────────────────────────────────────────
+            "none_4" -> LayoutConfig(
+                cellWidth = 0.48f,
+                cellHeight = 0.48f,
+                leftPadding = 0.01f,
+                topPadding = 0.01f,
+                hGap = 0.02f,
+                vGap = 0.02f
+            )
+            "none_6" -> LayoutConfig(
+                cellWidth = 0.48f,
+                cellHeight = 0.31f,
+                leftPadding = 0.01f,
+                topPadding = 0.01f,
+                hGap = 0.02f,
+                vGap = 0.02f
+            )
+            else -> if (gridCount == 6) LayoutConfig(
+                cellWidth = 0.48f,
+                cellHeight = 0.31f,
+                leftPadding = 0.01f,
+                topPadding = 0.01f,
+                hGap = 0.02f,
+                vGap = 0.02f
+            ) else LayoutConfig(
+                cellWidth = 0.48f,
+                cellHeight = 0.48f,
+                leftPadding = 0.01f,
+                topPadding = 0.01f,
+                hGap = 0.02f,
+                vGap = 0.02f
+            )
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_preview)
 
-        photoPaths = intent.getStringArrayExtra(EXTRA_PHOTOS) ?: emptyArray()
-        selectedFilter = FilterType.valueOf(
-            intent.getStringExtra(EXTRA_FILTER) ?: FilterType.NONE.name
-        )
-        gridCount = intent.getIntExtra(EXTRA_GRID_COUNT, 1)
+        photoPaths = intent.getStringArrayListExtra("photos") ?: emptyList()
+        selectedFilter = intent.getStringExtra("filter") ?: "NONE"
+        gridCount = intent.getIntExtra("gridCount", 4)
 
-        initViews()
-        buildCompositeImage()
-        setupStickerPicker()
-    }
-
-    private fun initViews() {
-        imgPreview = findViewById(R.id.imgPreview)
-        frameStickers = findViewById(R.id.frameStickers)
+        photoCanvas = findViewById(R.id.photoCanvas)
         rvStickers = findViewById(R.id.rvStickers)
-        btnPrint = findViewById(R.id.btnPrint)
-        btnSave = findViewById(R.id.btnSave)
-        btnBack = findViewById(R.id.btnBack)
-        tvStatus = findViewById(R.id.tvStatus)
 
-        btnPrint.setOnClickListener { printPhoto() }
-        btnSave.setOnClickListener { savePhoto() }
-        btnBack.setOnClickListener { finish() }
-
-        // Tap di area preview = tempatkan sticker
-        frameStickers.setOnTouchListener { _, event ->
-            if (event.action == MotionEvent.ACTION_DOWN && selectedStickerRes != null) {
-                placeSticker(event.x, event.y)
-                true
-            } else false
-        }
+        setupCanvas()
+        setupStickerPicker()
+        setupButtons()
     }
 
-    // ─────────────────────────────────────────────
-    // Composite Image (gabungkan foto + frame)
-    // ─────────────────────────────────────────────
-
-    private fun buildCompositeImage() {
-        tvStatus.text = "Memproses foto..."
-
-        Thread {
-            val bitmaps = photoPaths.mapNotNull { path ->
-                BitmapFactory.decodeFile(path)
+    private fun setupCanvas() {
+        // NONE = tidak pakai frame
+        if (selectedFilter.uppercase() != "NONE") {
+            val frameName = getFrameName()
+            try {
+                val stream = assets.open("frames/$frameName")
+                photoCanvas.frameBitmap = BitmapFactory.decodeStream(stream)
+                stream.close()
+            } catch (e: Exception) {
+                Toast.makeText(this, "Frame tidak ditemukan: $frameName", Toast.LENGTH_SHORT).show()
             }
-
-            if (bitmaps.isEmpty()) {
-                runOnUiThread { tvStatus.text = "Tidak ada foto" }
-                return@Thread
-            }
-
-            val result = createGrid(bitmaps, gridCount)
-            compositeBitmap = result
-
-            runOnUiThread {
-                imgPreview.setImageBitmap(result)
-                tvStatus.text = "Siap — tambah sticker atau langsung print!"
-                btnPrint.isEnabled = true
-                btnSave.isEnabled = true
-            }
-        }.start()
-    }
-
-    private fun createGrid(bitmaps: List<Bitmap>, count: Int): Bitmap {
-        val cellW = 640
-        val cellH = 480
-        val cols = if (count <= 2) 1 else 2
-        val rows = (count + cols - 1) / cols
-        val totalW = cellW * cols
-        val totalH = cellH * rows
-
-        val result = Bitmap.createBitmap(totalW, totalH, Bitmap.Config.ARGB_8888)
-        val canvas = Canvas(result)
-        val paint = Paint(Paint.FILTER_BITMAP_FLAG)
-
-        bitmaps.forEachIndexed { i, bmp ->
-            if (i >= count) return@forEachIndexed
-            val col = i % cols
-            val row = i / cols
-            val scaled = Bitmap.createScaledBitmap(bmp, cellW, cellH, true)
-            canvas.drawBitmap(scaled, (col * cellW).toFloat(), (row * cellH).toFloat(), paint)
-            if (scaled != bmp) scaled.recycle()
+        } else {
+            photoCanvas.frameBitmap = null // tidak ada frame
         }
 
-        // Apply frame overlay jika ada
-        val frameRes = selectedFilter.getFrameResId(count)
-        if (frameRes != 0) {
-            val frameBmp = BitmapFactory.decodeResource(resources, frameRes)
-            val scaledFrame = Bitmap.createScaledBitmap(frameBmp, totalW, totalH, true)
-            canvas.drawBitmap(scaledFrame, 0f, 0f, paint)
-            if (scaledFrame != frameBmp) scaledFrame.recycle()
-            frameBmp.recycle()
+        photoPaths.forEach { path ->
+            val file = File(path)
+            if (file.exists()) {
+                val bmp = BitmapFactory.decodeFile(file.absolutePath)
+                if (bmp != null) photoCanvas.photos.add(bmp)
+            }
         }
 
-        return result
+        photoCanvas.gridCount = gridCount
+        photoCanvas.layoutConfig = getLayoutConfig(selectedFilter, gridCount)
+        photoCanvas.invalidate()
     }
+    
+    // private fun setupCanvas() {
+    //     val frameName = getFrameName()
+    //     try {
+    //         val stream = assets.open("frames/$frameName")
+    //         photoCanvas.frameBitmap = BitmapFactory.decodeStream(stream)
+    //         stream.close()
+    //     } catch (e: Exception) {
+    //         Toast.makeText(this, "Frame tidak ditemukan: $frameName", Toast.LENGTH_SHORT).show()
+    //     }
 
-    // ─────────────────────────────────────────────
-    // Sticker
-    // ─────────────────────────────────────────────
+    //     photoPaths.forEach { path ->
+    //         val file = File(path)
+    //         if (file.exists()) {
+    //             val bmp = BitmapFactory.decodeFile(file.absolutePath)
+    //             if (bmp != null) photoCanvas.photos.add(bmp)
+    //         }
+    //     }
+
+    //     photoCanvas.gridCount = gridCount
+    //     photoCanvas.layoutConfig = getLayoutConfig(selectedFilter, gridCount)
+    //     photoCanvas.invalidate()
+    // }
+
+    private fun getFrameName(): String {
+        val suffix = when (selectedFilter.uppercase()) {
+            "FOOTBALL" -> "_football"
+            "VALENTINE" -> "_valentine"
+            else -> ""
+        }
+        return "frame${gridCount}_photobooth$suffix.png"
+    }
 
     private fun setupStickerPicker() {
-        // FIX: Use Android default drawables instead of custom ones
-        val stickers = listOf(
-            android.R.drawable.star_big_on,
-            android.R.drawable.btn_star_big_on,
-            android.R.drawable.ic_menu_info_details,
-            android.R.drawable.ic_menu_camera,
-            android.R.drawable.ic_menu_gallery,
-            android.R.drawable.ic_menu_preferences
-        )
-
-        val adapter = StickerAdapter(stickers) { resId ->
-            selectedStickerRes = if (selectedStickerRes == resId) null else resId
-            tvStatus.text = if (selectedStickerRes != null)
-                "Tap di foto untuk menempatkan sticker"
-            else "Sticker dibatalkan"
+        val adapter = StickerAdapter(this, allStickers) { stickerFile ->
+            try {
+                val stream = assets.open(stickerFile)
+                val bmp = BitmapFactory.decodeStream(stream)
+                stream.close()
+                photoCanvas.setPendingSticker(bmp)
+                Toast.makeText(this, "Tap di foto untuk taruh sticker\nDouble tap sticker untuk hapus", Toast.LENGTH_SHORT).show()
+            } catch (e: Exception) {
+                Toast.makeText(this, "Gagal load sticker", Toast.LENGTH_SHORT).show()
+            }
         }
-
         rvStickers.layoutManager = GridLayoutManager(this, 2)
         rvStickers.adapter = adapter
     }
 
-    private fun placeSticker(x: Float, y: Float) {
-        val resId = selectedStickerRes ?: return
-        val sticker = PlacedSticker(resId, x, y, 120f)
-        placedStickers.add(sticker)
-        drawStickerOnFrame(sticker)
-        selectedStickerRes = null
-        tvStatus.text = "Sticker ditambahkan!"
+    private fun setupButtons() {
+        // FIX: back = kembali 1 screen (finish), bukan keluar app
+        findViewById<TextView>(R.id.btnBack).setOnClickListener {
+            finish()
+        }
+
+        findViewById<LinearLayout>(R.id.btnSimpan).setOnClickListener {
+            saveToGallery()
+        }
+
+        findViewById<LinearLayout>(R.id.btnPrint).setOnClickListener {
+            Toast.makeText(this, "🖨 Fungsi print segera hadir!", Toast.LENGTH_SHORT).show()
+        }
+
+        // FIX: ulang = kembali ke screen 1 (finishAffinity)
+        // findViewById<LinearLayout>(R.id.btnUlang).setOnClickListener {
+        //     finishAffinity()
+        // }
+        findViewById<LinearLayout>(R.id.btnUlang).setOnClickListener {
+            val intent = Intent(this, FilterSelectionActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+            startActivity(intent)
+            finish()
+        }
     }
 
-    private fun drawStickerOnFrame(sticker: PlacedSticker) {
-        val iv = ImageView(this).apply {
-            setImageResource(sticker.resId)
-            layoutParams = FrameLayout.LayoutParams(
-                sticker.size.toInt(), sticker.size.toInt()
-            ).apply {
-                leftMargin = (sticker.x - sticker.size / 2).toInt()
-                topMargin = (sticker.y - sticker.size / 2).toInt()
+    private fun saveToGallery() {
+        try {
+            val finalBitmap = photoCanvas.renderFinalBitmap()
+            val filename = "photobooth_${System.currentTimeMillis()}.jpg"
+            val values = ContentValues().apply {
+                put(MediaStore.Images.Media.DISPLAY_NAME, filename)
+                put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg")
+                put(MediaStore.Images.Media.RELATIVE_PATH, Environment.DIRECTORY_PICTURES + "/MaxGPhotobooth")
             }
-            tag = sticker
-        }
-        frameStickers.addView(iv)
-    }
-
-    // ─────────────────────────────────────────────
-    // Print & Save
-    // ─────────────────────────────────────────────
-
-    private fun getFinalBitmap(): Bitmap? {
-        val base = compositeBitmap ?: return null
-
-        if (placedStickers.isEmpty()) return base
-
-        // Gabungkan sticker ke bitmap
-        val result = base.copy(Bitmap.Config.ARGB_8888, true)
-        val canvas = Canvas(result)
-        val paint = Paint(Paint.FILTER_BITMAP_FLAG)
-
-        val scaleX = result.width.toFloat() / frameStickers.width
-        val scaleY = result.height.toFloat() / frameStickers.height
-
-        placedStickers.forEach { s ->
-            val bmp = BitmapFactory.decodeResource(resources, s.resId)
-            val scaledSize = (s.size * scaleX).toInt()
-            val scaled = Bitmap.createScaledBitmap(bmp, scaledSize, scaledSize, true)
-            val left = (s.x - s.size / 2) * scaleX
-            val top = (s.y - s.size / 2) * scaleY
-            canvas.drawBitmap(scaled, left, top, paint)
-            scaled.recycle()
-            bmp.recycle()
-        }
-
-        return result
-    }
-
-    private fun printPhoto() {
-        val bitmap = getFinalBitmap() ?: return
-        tvStatus.text = "Mengirim ke printer..."
-        btnPrint.isEnabled = false
-
-        Thread {
-            val out = ByteArrayOutputStream()
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 90, out)
-            val base64 = android.util.Base64.encodeToString(
-                out.toByteArray(), android.util.Base64.NO_WRAP
-            )
-
-            printService.printPhoto(base64, copies = 1) { success, msg ->
-                runOnUiThread {
-                    tvStatus.text = if (success) "✅ $msg" else "❌ $msg"
-                    btnPrint.isEnabled = true
+            val uri = contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values)
+            uri?.let {
+                contentResolver.openOutputStream(it)?.use { out ->
+                    finalBitmap.compress(Bitmap.CompressFormat.JPEG, 95, out)
                 }
-            }
-        }.start()
-    }
-
-    private fun savePhoto() {
-        val bitmap = getFinalBitmap() ?: return
-        tvStatus.text = "Menyimpan..."
-
-        Thread {
-            val file = File(cacheDir, "final_${System.currentTimeMillis()}.jpg")
-            FileOutputStream(file).use { out ->
-                bitmap.compress(Bitmap.CompressFormat.JPEG, 95, out)
-            }
-            runOnUiThread {
-                tvStatus.text = "✅ Tersimpan: ${file.name}"
-            }
-        }.start()
+                Toast.makeText(this, "✅ Foto tersimpan ke galeri!", Toast.LENGTH_LONG).show()
+            } ?: Toast.makeText(this, "Gagal menyimpan", Toast.LENGTH_SHORT).show()
+        } catch (e: Exception) {
+            Toast.makeText(this, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
+        }
     }
 }

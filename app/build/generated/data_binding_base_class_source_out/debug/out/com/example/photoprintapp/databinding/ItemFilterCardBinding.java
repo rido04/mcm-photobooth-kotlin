@@ -4,11 +4,11 @@ package com.example.photoprintapp.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.cardview.widget.CardView;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.example.photoprintapp.R;
@@ -18,33 +18,37 @@ import java.lang.String;
 
 public final class ItemFilterCardBinding implements ViewBinding {
   @NonNull
-  private final CardView rootView;
+  private final FrameLayout rootView;
 
   @NonNull
-  public final CardView cardFilter;
+  public final ImageView ivBackground;
 
   @NonNull
-  public final ImageView imgFilterPreview;
+  public final ImageView ivCheck;
 
   @NonNull
-  public final TextView tvFilterDesc;
+  public final TextView tvDesc;
 
   @NonNull
-  public final TextView tvFilterName;
+  public final TextView tvName;
 
-  private ItemFilterCardBinding(@NonNull CardView rootView, @NonNull CardView cardFilter,
-      @NonNull ImageView imgFilterPreview, @NonNull TextView tvFilterDesc,
-      @NonNull TextView tvFilterName) {
+  @NonNull
+  public final View viewSelected;
+
+  private ItemFilterCardBinding(@NonNull FrameLayout rootView, @NonNull ImageView ivBackground,
+      @NonNull ImageView ivCheck, @NonNull TextView tvDesc, @NonNull TextView tvName,
+      @NonNull View viewSelected) {
     this.rootView = rootView;
-    this.cardFilter = cardFilter;
-    this.imgFilterPreview = imgFilterPreview;
-    this.tvFilterDesc = tvFilterDesc;
-    this.tvFilterName = tvFilterName;
+    this.ivBackground = ivBackground;
+    this.ivCheck = ivCheck;
+    this.tvDesc = tvDesc;
+    this.tvName = tvName;
+    this.viewSelected = viewSelected;
   }
 
   @Override
   @NonNull
-  public CardView getRoot() {
+  public FrameLayout getRoot() {
     return rootView;
   }
 
@@ -69,28 +73,38 @@ public final class ItemFilterCardBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
-      CardView cardFilter = (CardView) rootView;
-
-      id = R.id.imgFilterPreview;
-      ImageView imgFilterPreview = ViewBindings.findChildViewById(rootView, id);
-      if (imgFilterPreview == null) {
+      id = R.id.ivBackground;
+      ImageView ivBackground = ViewBindings.findChildViewById(rootView, id);
+      if (ivBackground == null) {
         break missingId;
       }
 
-      id = R.id.tvFilterDesc;
-      TextView tvFilterDesc = ViewBindings.findChildViewById(rootView, id);
-      if (tvFilterDesc == null) {
+      id = R.id.ivCheck;
+      ImageView ivCheck = ViewBindings.findChildViewById(rootView, id);
+      if (ivCheck == null) {
         break missingId;
       }
 
-      id = R.id.tvFilterName;
-      TextView tvFilterName = ViewBindings.findChildViewById(rootView, id);
-      if (tvFilterName == null) {
+      id = R.id.tvDesc;
+      TextView tvDesc = ViewBindings.findChildViewById(rootView, id);
+      if (tvDesc == null) {
         break missingId;
       }
 
-      return new ItemFilterCardBinding((CardView) rootView, cardFilter, imgFilterPreview,
-          tvFilterDesc, tvFilterName);
+      id = R.id.tvName;
+      TextView tvName = ViewBindings.findChildViewById(rootView, id);
+      if (tvName == null) {
+        break missingId;
+      }
+
+      id = R.id.viewSelected;
+      View viewSelected = ViewBindings.findChildViewById(rootView, id);
+      if (viewSelected == null) {
+        break missingId;
+      }
+
+      return new ItemFilterCardBinding((FrameLayout) rootView, ivBackground, ivCheck, tvDesc,
+          tvName, viewSelected);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));
