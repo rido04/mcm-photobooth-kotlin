@@ -17,6 +17,8 @@ import com.example.photoprintapp.R
 import com.example.photoprintapp.adapters.StickerAdapter
 import com.example.photoprintapp.views.LayoutConfig
 import com.example.photoprintapp.views.PhotoCanvasView
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.File
 
 class PreviewActivity : AppCompatActivity() {
@@ -242,6 +244,59 @@ class PreviewActivity : AppCompatActivity() {
         rvStickers.adapter = adapter
     }
 
+    private fun printPhoto() {
+        Toast.makeText(this, "⏳ Memproses foto...", Toast.LENGTH_SHORT).show()
+        
+        val bitmap = photoCanvas.renderFinalBitmap()
+        
+        val outputStream = java.io.ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 60, outputStream)
+        val imageBytes = outputStream.toByteArray()
+        val base64Image = android.util.Base64.encodeToString(imageBytes, android.util.Base64.NO_WRAP)
+        
+        val sizeKB = imageBytes.size / 1024
+        android.util.Log.d("PRINT", "Base64 size: ${base64Image.length} chars, image: ${sizeKB}KB")
+        Toast.makeText(this, "📦 Ukuran: ${sizeKB}KB, mulai kirim...", Toast.LENGTH_SHORT).show()
+
+        val url = "http://192.168.1.59:8000/api/print"
+        val client = okhttp3.OkHttpClient.Builder()
+            .connectTimeout(30, java.util.concurrent.TimeUnit.SECONDS)
+            .writeTimeout(120, java.util.concurrent.TimeUnit.SECONDS)
+            .readTimeout(120, java.util.concurrent.TimeUnit.SECONDS)
+            .build()
+
+        val json = """{"image":"$base64Image","copies":1}"""
+        val mediaType = "application/json".toMediaType()
+        val body = json.toRequestBody(mediaType)
+
+        val request = okhttp3.Request.Builder()
+            .url(url)
+            .post(body)
+            .header("Cache-Control", "no-cache")
+            .build()
+
+        Thread {
+            try {
+                android.util.Log.d("PRINT", "Sending request to $url")
+                val response = client.newCall(request).execute()
+                val responseBody = response.body?.string() ?: "no body"
+                android.util.Log.d("PRINT", "Response code: ${response.code}, body: $responseBody")
+                runOnUiThread {
+                    if (response.isSuccessful) {
+                        Toast.makeText(this, "✅ Print berhasil!", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(this, "❌ Code: ${response.code} | $responseBody", Toast.LENGTH_LONG).show()
+                    }
+                }
+            } catch (e: Exception) {
+                android.util.Log.e("PRINT", "Exception: ${e.message}", e)
+                runOnUiThread {
+                    Toast.makeText(this, "❌ Error: ${e.message}", Toast.LENGTH_LONG).show()
+                }
+            }
+        }.start()
+    }
+
     private fun setupButtons() {
         // FIX: back = kembali 1 screen (finish), bukan keluar app
         findViewById<TextView>(R.id.btnBack).setOnClickListener {
@@ -253,7 +308,7 @@ class PreviewActivity : AppCompatActivity() {
         }
 
         findViewById<LinearLayout>(R.id.btnPrint).setOnClickListener {
-            Toast.makeText(this, "🖨 Fungsi print segera hadir!", Toast.LENGTH_SHORT).show()
+            printPhoto()
         }
 
         findViewById<LinearLayout>(R.id.btnUlang).setOnClickListener {
