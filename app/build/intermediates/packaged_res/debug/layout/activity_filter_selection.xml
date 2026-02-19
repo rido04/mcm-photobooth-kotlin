@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:text="Pilih filter untuk foto kamu!"
         android:textColor="#8888AA"
-        android:textSize="14sp"
+        android:textSize="18sp"
         android:layout_marginTop="4dp"
         android:layout_marginBottom="16dp" />
 

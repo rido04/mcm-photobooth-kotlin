@@ -29,7 +29,7 @@
             android:layout_weight="1"
             android:text="Preview Hasil"
             android:textColor="#FFFFFF"
-            android:textSize="16sp"
+            android:textSize="22sp"
             android:textStyle="bold"
             android:gravity="center" />
 
@@ -71,7 +71,7 @@
                 android:layout_height="wrap_content"
                 android:text="🎨 Sticker"
                 android:textColor="#FFFFFF"
-                android:textSize="12sp"
+                android:textSize="22sp"
                 android:textStyle="bold"
                 android:gravity="center"
                 android:padding="8dp"
@@ -89,7 +89,7 @@
                 android:layout_height="wrap_content"
                 android:text="Pilih sticker lalu\nklik di foto"
                 android:textColor="#8888AA"
-                android:textSize="10sp"
+                android:textSize="16sp"
                 android:gravity="center"
                 android:padding="6dp" />
         </LinearLayout>
@@ -120,13 +120,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="💾"
-                android:textSize="16sp" />
+                android:textSize="24sp" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=" Simpan"
                 android:textColor="#FFFFFF"
-                android:textSize="14sp"
+                android:textSize="22sp"
                 android:textStyle="bold" />
         </LinearLayout>
 
@@ -145,13 +145,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="🖨"
-                android:textSize="16sp" />
+                android:textSize="24sp" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=" Print"
                 android:textColor="#FFFFFF"
-                android:textSize="14sp"
+                android:textSize="22sp"
                 android:textStyle="bold" />
         </LinearLayout>
 
@@ -169,13 +169,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="🔄"
-                android:textSize="16sp" />
+                android:textSize="24sp" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=" Ulang"
                 android:textColor="#FFFFFF"
-                android:textSize="14sp"
+                android:textSize="22sp"
                 android:textStyle="bold" />
         </LinearLayout>
     </LinearLayout>

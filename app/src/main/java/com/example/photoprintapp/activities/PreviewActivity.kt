@@ -138,23 +138,6 @@ class PreviewActivity : AppCompatActivity() {
                 vGap = 0.025f
             )
 
-            // // ── NONE / DEFAULT ─────────────────────────────────────────
-            // else -> if (gridCount == 6) LayoutConfig(
-            //     cellWidth = 0.40f,
-            //     cellHeight = 0.27f,
-            //     leftPadding = 0.02f,
-            //     topPadding = 0.06f,
-            //     hGap = 0.04f,
-            //     vGap = 0.024f
-            // ) else LayoutConfig(
-            //     cellWidth = 0.45f,
-            //     cellHeight = 0.40f,
-            //     leftPadding = 0.025f,
-            //     topPadding = 0.075f,
-            //     hGap = 0.04f,
-            //     vGap = 0.025f
-            // )
-
             // ── NONE / DEFAULT ─────────────────────────────────────────
             "none_4" -> LayoutConfig(
                 cellWidth = 0.48f,
@@ -234,29 +217,6 @@ class PreviewActivity : AppCompatActivity() {
         photoCanvas.invalidate()
     }
     
-    // private fun setupCanvas() {
-    //     val frameName = getFrameName()
-    //     try {
-    //         val stream = assets.open("frames/$frameName")
-    //         photoCanvas.frameBitmap = BitmapFactory.decodeStream(stream)
-    //         stream.close()
-    //     } catch (e: Exception) {
-    //         Toast.makeText(this, "Frame tidak ditemukan: $frameName", Toast.LENGTH_SHORT).show()
-    //     }
-
-    //     photoPaths.forEach { path ->
-    //         val file = File(path)
-    //         if (file.exists()) {
-    //             val bmp = BitmapFactory.decodeFile(file.absolutePath)
-    //             if (bmp != null) photoCanvas.photos.add(bmp)
-    //         }
-    //     }
-
-    //     photoCanvas.gridCount = gridCount
-    //     photoCanvas.layoutConfig = getLayoutConfig(selectedFilter, gridCount)
-    //     photoCanvas.invalidate()
-    // }
-
     private fun getFrameName(): String {
         val suffix = when (selectedFilter.uppercase()) {
             "FOOTBALL" -> "_football"
@@ -296,10 +256,6 @@ class PreviewActivity : AppCompatActivity() {
             Toast.makeText(this, "🖨 Fungsi print segera hadir!", Toast.LENGTH_SHORT).show()
         }
 
-        // FIX: ulang = kembali ke screen 1 (finishAffinity)
-        // findViewById<LinearLayout>(R.id.btnUlang).setOnClickListener {
-        //     finishAffinity()
-        // }
         findViewById<LinearLayout>(R.id.btnUlang).setOnClickListener {
             val intent = Intent(this, FilterSelectionActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP

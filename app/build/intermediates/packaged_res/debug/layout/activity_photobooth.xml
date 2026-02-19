@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:text="Filter: No Filter"
             android:textColor="#CCCCEE"
-            android:textSize="15sp"
+            android:textSize="20sp"
             android:layout_marginStart="4dp" />
     </LinearLayout>
 
@@ -118,14 +118,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="⚡"
-                    android:textSize="24sp" />
+                    android:textSize="30sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="CAPTURE"
                     android:textColor="#FFFFFF"
-                    android:textSize="12sp"
+                    android:textSize="20sp"
                     android:textStyle="bold"
                     android:layout_marginTop="4dp" />
             </LinearLayout>
@@ -145,14 +145,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="🔄"
-                    android:textSize="22sp" />
+                    android:textSize="30sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="RETAKE"
                     android:textColor="#FFA000"
-                    android:textSize="12sp"
+                    android:textSize="20sp"
                     android:textStyle="bold"
                     android:layout_marginTop="4dp" />
             </LinearLayout>
@@ -172,14 +172,14 @@
                     android:layout_height="wrap_content"
                     android:text="✓"
                     android:textColor="#FFFFFF"
-                    android:textSize="24sp" />
+                    android:textSize="30sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="OK"
                     android:textColor="#FFFFFF"
-                    android:textSize="12sp"
+                    android:textSize="20sp"
                     android:textStyle="bold"
                     android:layout_marginTop="4dp" />
             </LinearLayout>
@@ -190,7 +190,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="3"
+        android:layout_weight="4"
         android:orientation="vertical"
         android:background="#1A1A35"
         android:padding="12dp">
@@ -209,7 +209,7 @@
                 android:layout_weight="1"
                 android:text="Pilih Frame"
                 android:textColor="#FFFFFF"
-                android:textSize="15sp"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
             <!-- 4 Foto button -->
@@ -219,7 +219,7 @@
                 android:layout_height="36dp"
                 android:text="4 Foto"
                 android:textColor="#FFFFFF"
-                android:textSize="13sp"
+                android:textSize="18sp"
                 android:textStyle="bold"
                 android:gravity="center"
                 android:paddingHorizontal="16dp"
@@ -233,7 +233,7 @@
                 android:layout_height="36dp"
                 android:text="6 Foto"
                 android:textColor="#AAAACC"
-                android:textSize="13sp"
+                android:textSize="18sp"
                 android:gravity="center"
                 android:paddingHorizontal="16dp"
                 android:background="@drawable/bg_grid_btn_inactive" />

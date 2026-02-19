@@ -16,10 +16,6 @@
         "source": "C:\\Users\\sandi\\.gradle\\daemon\\9.0-milestone-1\\com.example.photoprintapp-main-40:\\layout\\item_photo_slot.xml"
     },
     {
-        "merged": "com.example.photoprintapp-mergeDebugResources-37:/layout/item_filter_card.xml",
-        "source": "com.example.photoprintapp-main-40:/layout/item_filter_card.xml"
-    },
-    {
         "merged": "C:\\Users\\sandi\\.gradle\\daemon\\9.0-milestone-1\\com.example.photoprintapp-mergeDebugResources-37:\\layout\\item_filter_card.xml",
         "source": "C:\\Users\\sandi\\.gradle\\daemon\\9.0-milestone-1\\com.example.photoprintapp-main-40:\\layout\\item_filter_card.xml"
     },
@@ -30,5 +26,9 @@
     {
         "merged": "C:\\Users\\sandi\\.gradle\\daemon\\9.0-milestone-1\\com.example.photoprintapp-mergeDebugResources-37:\\layout\\activity_preview.xml",
         "source": "C:\\Users\\sandi\\.gradle\\daemon\\9.0-milestone-1\\com.example.photoprintapp-main-40:\\layout\\activity_preview.xml"
+    },
+    {
+        "merged": "com.example.photoprintapp-mergeDebugResources-37:/layout/item_photo_slot.xml",
+        "source": "com.example.photoprintapp-main-40:/layout/item_photo_slot.xml"
     }
 ]
