@@ -1,0 +1,1 @@
+Projek Photobooth Kotlin ini backend nya ada di remote Linux ya di mobaXTerm, nama folder projectnya photobooth-api

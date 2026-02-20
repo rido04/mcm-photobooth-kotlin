@@ -67,7 +67,7 @@
 38-->[androidx.core:core:1.12.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\102bb4ca6e8b3e009636483291d8df3f\transformed\core-1.12.0\AndroidManifest.xml:26:22-94
 39
 40    <application
-40-->C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:18:5-73:19
+40-->C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:18:5-74:19
 41        android:allowBackup="true"
 41-->C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:19:9-35
 42        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
@@ -96,8 +96,8 @@
 55-->C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:33:13-74
 56            android:exported="true"
 56-->C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:31:13-36
-57            android:screenOrientation="portrait" >
-57-->C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:32:13-49
+57            android:screenOrientation="userPortrait" >
+57-->C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:32:13-53
 58            <intent-filter>
 58-->C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:34:13-38:29
 59                <action android:name="android.intent.action.MAIN" />
@@ -115,125 +115,127 @@
 65
 66        <!-- Screen 2: Photobooth (camera preview + capture) -->
 67        <activity
-67-->C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:42:9-53:20
+67-->C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:42:9-54:20
 68            android:name="com.example.photoprintapp.activities.PhotoboothActivity"
 68-->C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:43:13-58
 69            android:configChanges="orientation|keyboardHidden|screenSize"
-69-->C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:46:13-74
+69-->C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:47:13-74
 70            android:exported="false"
 70-->C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:44:13-37
-71            android:screenOrientation="portrait" >
-71-->C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:45:13-49
-72            <intent-filter>
-72-->C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:47:13-49:29
-73                <action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED" />
-73-->C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:48:17-90
-73-->C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:48:25-87
-74            </intent-filter>
-75
-76            <meta-data
-76-->C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:50:13-52:57
-77                android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED"
-77-->C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:51:17-79
-78                android:resource="@xml/device_filter" />
-78-->C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:52:17-54
-79        </activity>
-80
-81        <!-- Screen 3: Preview + Sticker -->
-82        <activity
-82-->C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:56:9-60:77
-83            android:name="com.example.photoprintapp.activities.PreviewActivity"
-83-->C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:57:13-55
-84            android:configChanges="orientation|keyboardHidden|screenSize"
-84-->C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:60:13-74
-85            android:exported="false"
-85-->C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:58:13-37
-86            android:screenOrientation="portrait" />
-86-->C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:59:13-49
-87
-88        <!-- FileProvider -->
-89        <provider
-89-->C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:63:9-71:20
-90            android:name="androidx.core.content.FileProvider"
-90-->C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:64:13-62
-91            android:authorities="com.example.photoprintapp.fileprovider"
-91-->C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:65:13-73
-92            android:exported="false"
-92-->C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:66:13-37
-93            android:grantUriPermissions="true" >
-93-->C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:67:13-47
-94            <meta-data
-94-->C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:68:13-70:54
-95                android:name="android.support.FILE_PROVIDER_PATHS"
-95-->C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:69:17-67
-96                android:resource="@xml/file_paths" />
-96-->C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:70:17-51
-97        </provider>
-98        <provider
-98-->[androidx.emoji2:emoji2:1.2.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\5ac437853ce22cc4f70dc376ad89b568\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:24:9-32:20
-99            android:name="androidx.startup.InitializationProvider"
-99-->[androidx.emoji2:emoji2:1.2.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\5ac437853ce22cc4f70dc376ad89b568\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:25:13-67
-100            android:authorities="com.example.photoprintapp.androidx-startup"
-100-->[androidx.emoji2:emoji2:1.2.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\5ac437853ce22cc4f70dc376ad89b568\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:26:13-68
-101            android:exported="false" >
-101-->[androidx.emoji2:emoji2:1.2.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\5ac437853ce22cc4f70dc376ad89b568\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:27:13-37
-102            <meta-data
-102-->[androidx.emoji2:emoji2:1.2.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\5ac437853ce22cc4f70dc376ad89b568\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:29:13-31:52
-103                android:name="androidx.emoji2.text.EmojiCompatInitializer"
-103-->[androidx.emoji2:emoji2:1.2.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\5ac437853ce22cc4f70dc376ad89b568\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:30:17-75
-104                android:value="androidx.startup" />
-104-->[androidx.emoji2:emoji2:1.2.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\5ac437853ce22cc4f70dc376ad89b568\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:31:17-49
-105            <meta-data
-105-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\8866a6b960f771cc1e53da512462582d\transformed\jetified-lifecycle-process-2.7.0\AndroidManifest.xml:29:13-31:52
-106                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
-106-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\8866a6b960f771cc1e53da512462582d\transformed\jetified-lifecycle-process-2.7.0\AndroidManifest.xml:30:17-78
-107                android:value="androidx.startup" />
-107-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\8866a6b960f771cc1e53da512462582d\transformed\jetified-lifecycle-process-2.7.0\AndroidManifest.xml:31:17-49
-108            <meta-data
-108-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\95534bd726c5df624a9db169c954d74b\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:29:13-31:52
-109                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
-109-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\95534bd726c5df624a9db169c954d74b\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:30:17-85
-110                android:value="androidx.startup" />
-110-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\95534bd726c5df624a9db169c954d74b\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:31:17-49
-111        </provider>
-112
-113        <receiver
-113-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\95534bd726c5df624a9db169c954d74b\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:34:9-52:20
-114            android:name="androidx.profileinstaller.ProfileInstallReceiver"
-114-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\95534bd726c5df624a9db169c954d74b\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:35:13-76
-115            android:directBootAware="false"
-115-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\95534bd726c5df624a9db169c954d74b\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:36:13-44
-116            android:enabled="true"
-116-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\95534bd726c5df624a9db169c954d74b\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:37:13-35
-117            android:exported="true"
-117-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\95534bd726c5df624a9db169c954d74b\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:38:13-36
-118            android:permission="android.permission.DUMP" >
-118-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\95534bd726c5df624a9db169c954d74b\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:39:13-57
-119            <intent-filter>
-119-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\95534bd726c5df624a9db169c954d74b\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:40:13-42:29
-120                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
-120-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\95534bd726c5df624a9db169c954d74b\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:41:17-91
-120-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\95534bd726c5df624a9db169c954d74b\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:41:25-88
-121            </intent-filter>
-122            <intent-filter>
-122-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\95534bd726c5df624a9db169c954d74b\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:43:13-45:29
-123                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
-123-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\95534bd726c5df624a9db169c954d74b\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:44:17-85
-123-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\95534bd726c5df624a9db169c954d74b\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:44:25-82
-124            </intent-filter>
-125            <intent-filter>
-125-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\95534bd726c5df624a9db169c954d74b\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:46:13-48:29
-126                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
-126-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\95534bd726c5df624a9db169c954d74b\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:47:17-88
-126-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\95534bd726c5df624a9db169c954d74b\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:47:25-85
-127            </intent-filter>
-128            <intent-filter>
-128-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\95534bd726c5df624a9db169c954d74b\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:49:13-51:29
-129                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
-129-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\95534bd726c5df624a9db169c954d74b\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:50:17-95
-129-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\95534bd726c5df624a9db169c954d74b\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:50:25-92
-130            </intent-filter>
-131        </receiver>
-132    </application>
-133
-134</manifest>
+71            android:launchMode="singleTop"
+71-->C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:45:13-43
+72            android:screenOrientation="userPortrait" >
+72-->C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:46:13-53
+73            <intent-filter>
+73-->C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:48:13-50:29
+74                <action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED" />
+74-->C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:49:17-90
+74-->C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:49:25-87
+75            </intent-filter>
+76
+77            <meta-data
+77-->C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:51:13-53:57
+78                android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED"
+78-->C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:52:17-79
+79                android:resource="@xml/device_filter" />
+79-->C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:53:17-54
+80        </activity>
+81
+82        <!-- Screen 3: Preview + Sticker -->
+83        <activity
+83-->C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:57:9-61:77
+84            android:name="com.example.photoprintapp.activities.PreviewActivity"
+84-->C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:58:13-55
+85            android:configChanges="orientation|keyboardHidden|screenSize"
+85-->C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:61:13-74
+86            android:exported="false"
+86-->C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:59:13-37
+87            android:screenOrientation="userPortrait" />
+87-->C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:60:13-53
+88
+89        <!-- FileProvider -->
+90        <provider
+90-->C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:64:9-72:20
+91            android:name="androidx.core.content.FileProvider"
+91-->C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:65:13-62
+92            android:authorities="com.example.photoprintapp.fileprovider"
+92-->C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:66:13-73
+93            android:exported="false"
+93-->C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:67:13-37
+94            android:grantUriPermissions="true" >
+94-->C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:68:13-47
+95            <meta-data
+95-->C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:69:13-71:54
+96                android:name="android.support.FILE_PROVIDER_PATHS"
+96-->C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:70:17-67
+97                android:resource="@xml/file_paths" />
+97-->C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:71:17-51
+98        </provider>
+99        <provider
+99-->[androidx.emoji2:emoji2:1.2.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\5ac437853ce22cc4f70dc376ad89b568\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:24:9-32:20
+100            android:name="androidx.startup.InitializationProvider"
+100-->[androidx.emoji2:emoji2:1.2.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\5ac437853ce22cc4f70dc376ad89b568\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:25:13-67
+101            android:authorities="com.example.photoprintapp.androidx-startup"
+101-->[androidx.emoji2:emoji2:1.2.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\5ac437853ce22cc4f70dc376ad89b568\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:26:13-68
+102            android:exported="false" >
+102-->[androidx.emoji2:emoji2:1.2.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\5ac437853ce22cc4f70dc376ad89b568\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:27:13-37
+103            <meta-data
+103-->[androidx.emoji2:emoji2:1.2.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\5ac437853ce22cc4f70dc376ad89b568\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:29:13-31:52
+104                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+104-->[androidx.emoji2:emoji2:1.2.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\5ac437853ce22cc4f70dc376ad89b568\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:30:17-75
+105                android:value="androidx.startup" />
+105-->[androidx.emoji2:emoji2:1.2.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\5ac437853ce22cc4f70dc376ad89b568\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:31:17-49
+106            <meta-data
+106-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\8866a6b960f771cc1e53da512462582d\transformed\jetified-lifecycle-process-2.7.0\AndroidManifest.xml:29:13-31:52
+107                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+107-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\8866a6b960f771cc1e53da512462582d\transformed\jetified-lifecycle-process-2.7.0\AndroidManifest.xml:30:17-78
+108                android:value="androidx.startup" />
+108-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\8866a6b960f771cc1e53da512462582d\transformed\jetified-lifecycle-process-2.7.0\AndroidManifest.xml:31:17-49
+109            <meta-data
+109-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\95534bd726c5df624a9db169c954d74b\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:29:13-31:52
+110                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+110-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\95534bd726c5df624a9db169c954d74b\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:30:17-85
+111                android:value="androidx.startup" />
+111-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\95534bd726c5df624a9db169c954d74b\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:31:17-49
+112        </provider>
+113
+114        <receiver
+114-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\95534bd726c5df624a9db169c954d74b\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:34:9-52:20
+115            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+115-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\95534bd726c5df624a9db169c954d74b\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:35:13-76
+116            android:directBootAware="false"
+116-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\95534bd726c5df624a9db169c954d74b\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:36:13-44
+117            android:enabled="true"
+117-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\95534bd726c5df624a9db169c954d74b\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:37:13-35
+118            android:exported="true"
+118-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\95534bd726c5df624a9db169c954d74b\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:38:13-36
+119            android:permission="android.permission.DUMP" >
+119-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\95534bd726c5df624a9db169c954d74b\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:39:13-57
+120            <intent-filter>
+120-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\95534bd726c5df624a9db169c954d74b\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:40:13-42:29
+121                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+121-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\95534bd726c5df624a9db169c954d74b\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:41:17-91
+121-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\95534bd726c5df624a9db169c954d74b\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:41:25-88
+122            </intent-filter>
+123            <intent-filter>
+123-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\95534bd726c5df624a9db169c954d74b\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:43:13-45:29
+124                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+124-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\95534bd726c5df624a9db169c954d74b\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:44:17-85
+124-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\95534bd726c5df624a9db169c954d74b\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:44:25-82
+125            </intent-filter>
+126            <intent-filter>
+126-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\95534bd726c5df624a9db169c954d74b\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:46:13-48:29
+127                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+127-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\95534bd726c5df624a9db169c954d74b\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:47:17-88
+127-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\95534bd726c5df624a9db169c954d74b\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:47:25-85
+128            </intent-filter>
+129            <intent-filter>
+129-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\95534bd726c5df624a9db169c954d74b\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:49:13-51:29
+130                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+130-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\95534bd726c5df624a9db169c954d74b\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:50:17-95
+130-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\95534bd726c5df624a9db169c954d74b\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:50:25-92
+131            </intent-filter>
+132        </receiver>
+133    </application>
+134
+135</manifest>

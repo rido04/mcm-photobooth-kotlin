@@ -143,7 +143,7 @@ class PhotoboothActivity : AppCompatActivity() {
         isCountingDown = true
         layoutCountdown.visibility = View.VISIBLE
         updateButtonStates()
-        countDownTimer = object : CountDownTimer(1000, 1000) {
+        countDownTimer = object : CountDownTimer(3000, 1000) {
             override fun onTick(ms: Long) {
                 tvCountdown.text = ((ms / 1000) + 1).toString()
             }

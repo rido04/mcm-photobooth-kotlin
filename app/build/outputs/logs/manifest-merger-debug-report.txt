@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:2:1-74:12
-INJECTED from C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:2:1-74:12
-INJECTED from C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:2:1-74:12
-INJECTED from C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:2:1-74:12
+ADDED from C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:2:1-75:12
+INJECTED from C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:2:1-75:12
+INJECTED from C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:2:1-75:12
+INJECTED from C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:2:1-75:12
 MERGED from [androidx.databinding:viewbinding:8.2.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\c656eec573e1706c78daa21d670f237c\transformed\jetified-viewbinding-8.2.0\AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.android.material:material:1.11.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\5e00f626b2b950af2f602e73584cc21f\transformed\material-1.11.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\a01b36b83903ec271a6d7032067adc73\transformed\constraintlayout-2.1.4\AndroidManifest.xml:2:1-11:12
@@ -124,8 +124,8 @@ ADDED from C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:16:5
 	android:name
 		ADDED from C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:16:22-73
 application
-ADDED from C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:18:5-73:19
-INJECTED from C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:18:5-73:19
+ADDED from C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:18:5-74:19
+INJECTED from C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:18:5-74:19
 MERGED from [com.google.android.material:material:1.11.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\5e00f626b2b950af2f602e73584cc21f\transformed\material-1.11.0\AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.11.0] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\5e00f626b2b950af2f602e73584cc21f\transformed\material-1.11.0\AndroidManifest.xml:22:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\sandi\.gradle\caches\9.0-milestone-1\transforms\a01b36b83903ec271a6d7032067adc73\transformed\constraintlayout-2.1.4\AndroidManifest.xml:9:5-20
@@ -165,7 +165,7 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\sa
 activity#com.example.photoprintapp.activities.FilterSelectionActivity
 ADDED from C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:29:9-39:20
 	android:screenOrientation
-		ADDED from C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:32:13-49
+		ADDED from C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:32:13-53
 	android:exported
 		ADDED from C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:31:13-36
 	android:configChanges
@@ -187,53 +187,55 @@ ADDED from C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:37:1
 	android:name
 		ADDED from C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:37:27-83
 activity#com.example.photoprintapp.activities.PhotoboothActivity
-ADDED from C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:42:9-53:20
+ADDED from C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:42:9-54:20
 	android:screenOrientation
-		ADDED from C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:45:13-49
+		ADDED from C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:46:13-53
+	android:launchMode
+		ADDED from C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:45:13-43
 	android:exported
 		ADDED from C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:44:13-37
 	android:configChanges
-		ADDED from C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:46:13-74
+		ADDED from C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:47:13-74
 	android:name
 		ADDED from C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:43:13-58
 intent-filter#action:name:android.hardware.usb.action.USB_DEVICE_ATTACHED
-ADDED from C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:47:13-49:29
+ADDED from C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:48:13-50:29
 action#android.hardware.usb.action.USB_DEVICE_ATTACHED
-ADDED from C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:48:17-90
+ADDED from C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:49:17-90
 	android:name
-		ADDED from C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:48:25-87
+		ADDED from C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:49:25-87
 meta-data#android.hardware.usb.action.USB_DEVICE_ATTACHED
-ADDED from C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:50:13-52:57
+ADDED from C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:51:13-53:57
 	android:resource
-		ADDED from C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:52:17-54
+		ADDED from C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:53:17-54
 	android:name
-		ADDED from C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:51:17-79
+		ADDED from C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:52:17-79
 activity#com.example.photoprintapp.activities.PreviewActivity
-ADDED from C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:56:9-60:77
+ADDED from C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:57:9-61:77
 	android:screenOrientation
-		ADDED from C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:59:13-49
+		ADDED from C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:60:13-53
 	android:exported
-		ADDED from C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:58:13-37
+		ADDED from C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:59:13-37
 	android:configChanges
-		ADDED from C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:60:13-74
+		ADDED from C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:61:13-74
 	android:name
-		ADDED from C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:57:13-55
+		ADDED from C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:58:13-55
 provider#androidx.core.content.FileProvider
-ADDED from C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:63:9-71:20
+ADDED from C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:64:9-72:20
 	android:grantUriPermissions
-		ADDED from C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:67:13-47
+		ADDED from C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:68:13-47
 	android:authorities
-		ADDED from C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:65:13-73
+		ADDED from C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:66:13-73
 	android:exported
-		ADDED from C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:66:13-37
+		ADDED from C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:67:13-37
 	android:name
-		ADDED from C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:64:13-62
+		ADDED from C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:65:13-62
 meta-data#android.support.FILE_PROVIDER_PATHS
-ADDED from C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:68:13-70:54
+ADDED from C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:69:13-71:54
 	android:resource
-		ADDED from C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:70:17-51
+		ADDED from C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:71:17-51
 	android:name
-		ADDED from C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:69:17-67
+		ADDED from C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:70:17-67
 uses-sdk
 INJECTED from C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml
