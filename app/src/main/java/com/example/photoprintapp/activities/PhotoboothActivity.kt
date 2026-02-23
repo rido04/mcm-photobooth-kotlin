@@ -20,7 +20,7 @@ import com.serenegiant.usb.UVCCamera
 import java.io.File
 import java.io.FileOutputStream
 
-class PhotoboothActivity : AppCompatActivity() {
+class PhotoboothActivity : BaseActivity() {
 
     private var selectedFilter = "NONE"
     private var gridCount = 4

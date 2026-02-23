@@ -165,7 +165,7 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\sa
 activity#com.example.photoprintapp.activities.FilterSelectionActivity
 ADDED from C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:29:9-39:20
 	android:screenOrientation
-		ADDED from C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:32:13-53
+		ADDED from C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:32:13-50
 	android:exported
 		ADDED from C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:31:13-36
 	android:configChanges
@@ -189,7 +189,7 @@ ADDED from C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:37:1
 activity#com.example.photoprintapp.activities.PhotoboothActivity
 ADDED from C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:42:9-54:20
 	android:screenOrientation
-		ADDED from C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:46:13-53
+		ADDED from C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:46:13-50
 	android:launchMode
 		ADDED from C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:45:13-43
 	android:exported
@@ -213,7 +213,7 @@ ADDED from C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:51:1
 activity#com.example.photoprintapp.activities.PreviewActivity
 ADDED from C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:57:9-61:77
 	android:screenOrientation
-		ADDED from C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:60:13-53
+		ADDED from C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:60:13-50
 	android:exported
 		ADDED from C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:59:13-37
 	android:configChanges

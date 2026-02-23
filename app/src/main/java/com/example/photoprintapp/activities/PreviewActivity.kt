@@ -21,7 +21,7 @@ import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.File
 
-class PreviewActivity : AppCompatActivity() {
+class PreviewActivity : BaseActivity() {
 
     private var photoPaths = listOf<String>()
     private var selectedFilter = "NONE"

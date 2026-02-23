@@ -96,8 +96,8 @@
 55-->C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:33:13-74
 56            android:exported="true"
 56-->C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:31:13-36
-57            android:screenOrientation="userPortrait" >
-57-->C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:32:13-53
+57            android:screenOrientation="landscape" >
+57-->C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:32:13-50
 58            <intent-filter>
 58-->C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:34:13-38:29
 59                <action android:name="android.intent.action.MAIN" />
@@ -124,8 +124,8 @@
 70-->C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:44:13-37
 71            android:launchMode="singleTop"
 71-->C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:45:13-43
-72            android:screenOrientation="userPortrait" >
-72-->C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:46:13-53
+72            android:screenOrientation="landscape" >
+72-->C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:46:13-50
 73            <intent-filter>
 73-->C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:48:13-50:29
 74                <action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED" />
@@ -150,8 +150,8 @@
 85-->C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:61:13-74
 86            android:exported="false"
 86-->C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:59:13-37
-87            android:screenOrientation="userPortrait" />
-87-->C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:60:13-53
+87            android:screenOrientation="landscape" />
+87-->C:\work\max-g-photobooth-kotlin\app\src\main\AndroidManifest.xml:60:13-50
 88
 89        <!-- FileProvider -->
 90        <provider

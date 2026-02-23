@@ -6,44 +6,67 @@
     android:background="#0D0D1A"
     android:padding="16dp">
 
-    <!-- ROW 1: Title -->
-    <TextView
-        android:layout_width="wrap_content"
+    <!-- ROW 1: Title kiri + Button kanan -->
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Max-G Photobooth"
-        android:textColor="#FFFFFF"
-        android:textSize="28sp"
-        android:textStyle="bold"
-        android:fontFamily="sans-serif-medium"
-        android:layout_marginTop="12dp" />
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="12dp">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Pilih filter untuk foto kamu!"
-        android:textColor="#8888AA"
-        android:textSize="18sp"
-        android:layout_marginTop="4dp"
-        android:layout_marginBottom="16dp" />
+        <!-- Kolom 1: Title -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
 
-    <!-- ROW 2: Filter Grid (8 cards, 2 col x 4 row) -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Max-G Photobooth"
+                android:textColor="#FFFFFF"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                android:fontFamily="sans-serif-medium" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pilih filter untuk foto kamu!"
+                android:textColor="#8888AA"
+                android:textSize="13sp"
+                android:layout_marginTop="2dp" />
+        </LinearLayout>
+
+        <!-- Spacer -->
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
+        <!-- Button Lanjutkan -->
+        <Button
+            android:id="@+id/btnContinue"
+            android:layout_width="200dp"
+            android:layout_height="48dp"
+            android:text="LANJUTKAN →"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:backgroundTint="#5B35D5"
+            android:stateListAnimator="@null" />
+
+    </LinearLayout>
+
+    <!-- ROW 2: Grid Filter -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvFilters"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />
-
-    <!-- ROW 3: Lanjutkan Button -->
-    <Button
-        android:id="@+id/btnContinue"
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:text="Lanjutkan →"
-        android:textColor="#FFFFFF"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:backgroundTint="#5B35D5"
-        android:layout_marginTop="12dp"
-        android:stateListAnimator="@null" />
 
 </LinearLayout>

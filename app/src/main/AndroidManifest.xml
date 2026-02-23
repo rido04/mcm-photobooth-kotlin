@@ -29,7 +29,7 @@
         <activity
             android:name=".activities.FilterSelectionActivity"
             android:exported="true"
-            android:screenOrientation="userPortrait"
+            android:screenOrientation="landscape"
             android:configChanges="orientation|keyboardHidden|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -43,7 +43,7 @@
             android:name=".activities.PhotoboothActivity"
             android:exported="false"
             android:launchMode="singleTop"
-            android:screenOrientation="userPortrait"
+            android:screenOrientation="landscape"
             android:configChanges="orientation|keyboardHidden|screenSize">
             <intent-filter>
                 <action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED" />
@@ -57,7 +57,7 @@
         <activity
             android:name=".activities.PreviewActivity"
             android:exported="false"
-            android:screenOrientation="userPortrait"
+            android:screenOrientation="landscape"
             android:configChanges="orientation|keyboardHidden|screenSize" />
 
         <!-- FileProvider -->

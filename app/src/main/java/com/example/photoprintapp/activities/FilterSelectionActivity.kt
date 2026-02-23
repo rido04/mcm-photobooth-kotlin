@@ -10,7 +10,8 @@ import com.example.photoprintapp.R
 import com.example.photoprintapp.adapters.FilterAdapter
 import com.example.photoprintapp.adapters.FilterItem
 
-class FilterSelectionActivity : AppCompatActivity() {
+// class FilterSelectionActivity : AppCompatActivity() {
+class FilterSelectionActivity : BaseActivity() {
 
     private var selectedFilter = "NONE"
 
@@ -35,7 +36,8 @@ class FilterSelectionActivity : AppCompatActivity() {
         }
 
         val rv = findViewById<RecyclerView>(R.id.rvFilters)
-        rv.layoutManager = GridLayoutManager(this, 2)
+        // rv.layoutManager = GridLayoutManager(this, 2)
+        rv.layoutManager = GridLayoutManager(this, 4)
         rv.adapter = adapter
         adapter.setSelected("NONE")
 

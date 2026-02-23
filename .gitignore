@@ -1,0 +1,44 @@
+# Android
+*.iml
+.gradle
+/local.properties
+/.idea
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+local.properties
+
+# App build outputs
+app/build/
+app/release/
+
+# Keystore
+*.jks
+*.keystore
+
+# Google Services
+google-services.json
+
+# NDK
+.ndk/
+
+# Kotlin
+*.class
+*.kotlin_module
+
+# Gradle
+.gradle/
+gradle-wrapper.jar
+gradlew.bat
+
+# IDE
+.idea/
+*.iml
+out/
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
