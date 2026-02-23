@@ -66,17 +66,10 @@
         <!-- Screen 2: Photobooth (camera preview + capture) -->
         <activity
             android:name="com.example.photoprintapp.activities.PhotoboothActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:exported="false"
+            android:configChanges="orientation|keyboardHidden|screenSize|uiMode|keyboard"
+            android:exported="true"
             android:launchMode="singleTop"
             android:screenOrientation="landscape" >
-            <intent-filter>
-                <action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED" />
-            </intent-filter>
-
-            <meta-data
-                android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED"
-                android:resource="@xml/device_filter" />
         </activity>
 
         <!-- Screen 3: Preview + Sticker -->
@@ -84,6 +77,7 @@
             android:name="com.example.photoprintapp.activities.PreviewActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:exported="false"
+            android:launchMode="singleTop"
             android:screenOrientation="landscape" />
 
         <!-- FileProvider -->

@@ -1,8 +1,10 @@
 package com.example.photoprintapp.activities
 
+import android.app.PendingIntent
 import android.content.Intent
 import android.graphics.Bitmap
 import android.hardware.usb.UsbDevice
+import android.hardware.usb.UsbManager
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.SurfaceView
@@ -10,7 +12,6 @@ import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.photoprintapp.R
@@ -52,7 +53,7 @@ class PhotoboothActivity : BaseActivity() {
 
         selectedFilter = intent.getStringExtra("filter") ?: "NONE"
 
-        surfaceView = findViewById<SurfaceView>(R.id.surfaceView)
+        surfaceView = findViewById(R.id.surfaceView)
         tvStatus = findViewById(R.id.tvStatus)
         tvFilterLabel = findViewById(R.id.tvFilterLabel)
         tvCountdown = findViewById(R.id.tvCountdown)
@@ -71,11 +72,29 @@ class PhotoboothActivity : BaseActivity() {
         setupUsbCamera()
     }
 
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        setIntent(intent)
+    }
+
+    private fun requestUsbPermissionManually() {
+        val usbManager = getSystemService(USB_SERVICE) as UsbManager
+        val deviceList = usbManager.deviceList
+        deviceList.values.forEach { device ->
+            if (!usbManager.hasPermission(device)) {
+                val permissionIntent = PendingIntent.getBroadcast(
+                    this, 0,
+                    Intent("com.example.photoprintapp.USB_PERMISSION"),
+                    PendingIntent.FLAG_IMMUTABLE
+                )
+                usbManager.requestPermission(device, permissionIntent)
+            }
+        }
+    }
+
     private fun initPhotoGrid() {
         capturedPhotos.clear()
         repeat(gridCount) { capturedPhotos.add(null) }
-
-        // FIX THUMBNAIL: pass reference langsung, bukan .toMutableList() (copy)
         photoGridAdapter = PhotoGridAdapter(capturedPhotos)
         rvPhotoGrid.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         rvPhotoGrid.adapter = photoGridAdapter
@@ -166,8 +185,6 @@ class PhotoboothActivity : BaseActivity() {
                 val h = UVCCamera.DEFAULT_PREVIEW_HEIGHT
                 val bmp = Bitmap.createBitmap(w, h, Bitmap.Config.RGB_565)
                 bmp.copyPixelsFromBuffer(frame)
-
-                // FIX FREEZE: matikan callback dari UI thread bukan dari callback thread
                 runOnUiThread {
                     uvcCamera?.setFrameCallback(null, UVCCamera.PIXEL_FORMAT_RGB565)
                     savePhoto(bmp)
@@ -203,8 +220,6 @@ class PhotoboothActivity : BaseActivity() {
         btnCapture.alpha = if (canCapture) 1f else 0.5f
         btnOk.alpha = if (isComplete()) 1f else 0.4f
     }
-
-    // ─── USB Camera ───────────────────────────────────────────────────
 
     private fun setupUsbCamera() {
         usbMonitor = USBMonitor(this, object : USBMonitor.OnDeviceConnectListener {
@@ -255,7 +270,11 @@ class PhotoboothActivity : BaseActivity() {
         isCameraReady = false
     }
 
-    override fun onStart() { super.onStart(); usbMonitor?.register() }
+    override fun onStart() { 
+        super.onStart()
+        usbMonitor?.register()
+        requestUsbPermissionManually()
+    }
     override fun onStop() { super.onStop(); usbMonitor?.unregister() }
     override fun onDestroy() {
         super.onDestroy()

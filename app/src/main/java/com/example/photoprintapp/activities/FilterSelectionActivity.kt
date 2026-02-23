@@ -36,8 +36,8 @@ class FilterSelectionActivity : BaseActivity() {
         }
 
         val rv = findViewById<RecyclerView>(R.id.rvFilters)
-        // rv.layoutManager = GridLayoutManager(this, 2)
-        rv.layoutManager = GridLayoutManager(this, 4)
+        rv.layoutManager = GridLayoutManager(this, 2)
+        // rv.layoutManager = GridLayoutManager(this, 4)
         rv.adapter = adapter
         adapter.setSelected("NONE")
 

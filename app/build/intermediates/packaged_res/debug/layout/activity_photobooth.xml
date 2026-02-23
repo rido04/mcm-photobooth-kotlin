@@ -5,7 +5,6 @@
     android:orientation="vertical"
     android:background="#0D0D1A">
 
-    <!-- TOP BAR: back + filter name -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="48dp"
@@ -21,7 +20,9 @@
             android:text="←"
             android:textColor="#FFFFFF"
             android:textSize="22sp"
-            android:padding="8dp" />
+            android:padding="8dp"
+            android:letterSpacing="0.1"
+            android:fontFamily="@font/orbitron_regular" />
 
         <TextView
             android:id="@+id/tvFilterLabel"
@@ -30,17 +31,17 @@
             android:text="Filter: No Filter"
             android:textColor="#CCCCEE"
             android:textSize="20sp"
+            android:letterSpacing="0.2"
+            android:fontFamily="@font/orbitron_regular"
             android:layout_marginStart="4dp" />
     </LinearLayout>
 
-    <!-- ROW 1: Camera (70%) -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="7"
         android:orientation="horizontal">
 
-        <!-- COL 1: Camera Preview (75%) -->
         <FrameLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -52,7 +53,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
 
-            <!-- Camera not ready message -->
             <TextView
                 android:id="@+id/tvStatus"
                 android:layout_width="wrap_content"
@@ -61,11 +61,12 @@
                 android:text="Colokkan USB webcam untuk memulai"
                 android:textColor="#FFFFFF"
                 android:textSize="14sp"
+                android:letterSpacing="0.15"
+                android:fontFamily="@font/orbitron_regular"
                 android:background="#AA000000"
                 android:padding="12dp"
                 android:gravity="center" />
 
-            <!-- Countdown overlay -->
             <LinearLayout
                 android:id="@+id/layoutCountdown"
                 android:layout_width="match_parent"
@@ -82,7 +83,9 @@
                     android:text="3"
                     android:textColor="#FFFFFF"
                     android:textSize="96sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:letterSpacing="0.1"
+                    android:fontFamily="@font/orbitron_regular" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -90,11 +93,12 @@
                     android:text="Get Ready!"
                     android:textColor="#FFFFFF"
                     android:textSize="20sp"
+                    android:letterSpacing="0.2"
+                    android:fontFamily="@font/orbitron_regular"
                     android:layout_marginTop="8dp" />
             </LinearLayout>
         </FrameLayout>
 
-        <!-- COL 2: Action Buttons (25%) -->
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -103,7 +107,6 @@
             android:padding="8dp"
             android:background="#0D0D1A">
 
-            <!-- CAPTURE -->
             <LinearLayout
                 android:id="@+id/btnCapture"
                 android:layout_width="match_parent"
@@ -127,10 +130,11 @@
                     android:textColor="#FFFFFF"
                     android:textSize="18sp"
                     android:textStyle="bold"
+                    android:letterSpacing="0.3"
+                    android:fontFamily="@font/orbitron_regular"
                     android:layout_marginTop="4dp" />
             </LinearLayout>
 
-            <!-- RETAKE -->
             <LinearLayout
                 android:id="@+id/btnRetake"
                 android:layout_width="match_parent"
@@ -154,10 +158,11 @@
                     android:textColor="#FFA000"
                     android:textSize="18sp"
                     android:textStyle="bold"
+                    android:letterSpacing="0.3"
+                    android:fontFamily="@font/orbitron_regular"
                     android:layout_marginTop="4dp" />
             </LinearLayout>
 
-            <!-- OK -->
             <LinearLayout
                 android:id="@+id/btnOk"
                 android:layout_width="match_parent"
@@ -181,12 +186,13 @@
                     android:textColor="#FFFFFF"
                     android:textSize="18sp"
                     android:textStyle="bold"
+                    android:letterSpacing="0.3"
+                    android:fontFamily="@font/orbitron_regular"
                     android:layout_marginTop="4dp" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 
-    <!-- ROW 2: Photo Grid Panel (30%) -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -195,7 +201,6 @@
         android:background="#1A1A35"
         android:padding="12dp">
 
-        <!-- ROW 2.1: "Pilih Frame" + grid selector -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -210,9 +215,10 @@
                 android:text="Pilih Frame"
                 android:textColor="#FFFFFF"
                 android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:letterSpacing="0.3"
+                android:fontFamily="@font/orbitron_regular" />
 
-            <!-- 4 Foto button -->
             <TextView
                 android:id="@+id/btn4Foto"
                 android:layout_width="wrap_content"
@@ -221,12 +227,13 @@
                 android:textColor="#FFFFFF"
                 android:textSize="18sp"
                 android:textStyle="bold"
+                android:letterSpacing="0.2"
+                android:fontFamily="@font/orbitron_regular"
                 android:gravity="center"
                 android:paddingHorizontal="16dp"
                 android:background="@drawable/bg_grid_btn_active"
                 android:layout_marginEnd="6dp" />
 
-            <!-- 6 Foto button -->
             <TextView
                 android:id="@+id/btn6Foto"
                 android:layout_width="wrap_content"
@@ -234,12 +241,13 @@
                 android:text="6 Foto"
                 android:textColor="#AAAACC"
                 android:textSize="18sp"
+                android:letterSpacing="0.2"
+                android:fontFamily="@font/orbitron_regular"
                 android:gravity="center"
                 android:paddingHorizontal="16dp"
                 android:background="@drawable/bg_grid_btn_inactive" />
         </LinearLayout>
 
-        <!-- ROW 2.2: Photo thumbnails -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvPhotoGrid"
             android:layout_width="match_parent"

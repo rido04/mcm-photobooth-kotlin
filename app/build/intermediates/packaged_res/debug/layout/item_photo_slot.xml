@@ -26,7 +26,7 @@
         android:background="@drawable/bg_photo_slot">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="48dp"
             android:layout_height="wrap_content"
             android:text="🖼"
             android:textSize="32sp" />
@@ -36,6 +36,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Foto 1"
+            android:letterSpacing="0.3"
             android:textColor="#AAAACC"
             android:textSize="18sp"
             android:layout_marginTop="4dp" />

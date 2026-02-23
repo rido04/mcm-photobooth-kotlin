@@ -18,6 +18,7 @@ drawable gradient_card_overlay
 drawable gradient_overlay
 drawable ic_add_photo
 drawable ic_check_circle
+font orbitron_regular
 id btn4Foto
 id btn6Foto
 id btnBack

@@ -41,22 +41,17 @@
         <!-- Screen 2: Photobooth (camera preview + capture) -->
         <activity
             android:name=".activities.PhotoboothActivity"
-            android:exported="false"
+            android:exported="true"
             android:launchMode="singleTop"
             android:screenOrientation="landscape"
-            android:configChanges="orientation|keyboardHidden|screenSize">
-            <intent-filter>
-                <action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED" />
-            </intent-filter>
-            <meta-data
-                android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED"
-                android:resource="@xml/device_filter" />
+            android:configChanges="orientation|keyboardHidden|screenSize|uiMode|keyboard">
         </activity>
 
         <!-- Screen 3: Preview + Sticker -->
         <activity
             android:name=".activities.PreviewActivity"
             android:exported="false"
+            android:launchMode="singleTop"
             android:screenOrientation="landscape"
             android:configChanges="orientation|keyboardHidden|screenSize" />
 
