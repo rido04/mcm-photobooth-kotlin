@@ -23,14 +23,32 @@ android {
         viewBinding = true
     }
 
+    // 🔐 SIGNING CONFIG (INI YANG BARU)
+    signingConfigs {
+        create("release") {
+            storeFile = file("release.keystore")
+            storePassword = "sap443811"
+            keyAlias = "photobooth"
+            keyPassword = "sap443811"
+        }
+    }
+
     buildTypes {
         release {
             isMinifyEnabled = false
+            isShrinkResources = false
+
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            signingConfig = signingConfigs.getByName("debug")
+
+            // 🔥 pakai keystore sendiri
+            signingConfig = signingConfigs.getByName("release")
+        }
+
+        debug {
+            // biarin default aja (pakai debug key)
         }
     }
 
@@ -68,6 +86,6 @@ dependencies {
     implementation("com.github.bumptech.glide:glide:4.16.0")
     annotationProcessor("com.github.bumptech.glide:compiler:4.16.0")
 
-    // Lifecycle - untuk lifecycleScope di PreviewActivity
+    // Lifecycle
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
 }

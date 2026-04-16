@@ -1,3 +1,16 @@
 # Default ignored files
 /shelf/
 /workspace.xml
+
+# Gradle build outputs
+.gradle/
+app/build/
+build/
+
+# Local keystore (jangan di-commit!)
+*.keystore
+
+# IDE
+.idea/
+*.iml
+local.properties

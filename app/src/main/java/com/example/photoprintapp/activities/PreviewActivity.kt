@@ -68,6 +68,42 @@ class PreviewActivity : AppCompatActivity() {
                 vGap = 0.010f
             )
 
+            // ── Al AZHAR 41 ──────────────────────────────────────────────────
+            "al_azhar_41_4" -> LayoutConfig(
+                cellWidth = 0.47f,
+                cellHeight = 0.420f,
+                leftPadding = 0.02f,
+                topPadding = 0.057f,
+                hGap = 0.02f,
+                vGap = 0.016f
+            )
+            "al_azhar_41_6" -> LayoutConfig(
+                cellWidth = 0.305f,
+                cellHeight = 0.29f,
+                leftPadding = 0.320f,
+                topPadding = 0.059f,
+                hGap = 0.025f,
+                vGap = 0.010f
+            )
+
+            // ── Al AZHAR ──────────────────────────────────────────────────
+            "al_azhar_4" -> LayoutConfig(
+                cellWidth = 0.47f,
+                cellHeight = 0.420f,
+                leftPadding = 0.02f,
+                topPadding = 0.057f,
+                hGap = 0.02f,
+                vGap = 0.016f
+            )
+            "al_azhar_6" -> LayoutConfig(
+                cellWidth = 0.305f,
+                cellHeight = 0.29f,
+                leftPadding = 0.320f,
+                topPadding = 0.059f,
+                hGap = 0.025f,
+                vGap = 0.010f
+            )
+
             // ── FOOTBALL ───────────────────────────────────────────────
             "football_4" -> LayoutConfig(
                 cellWidth = 0.45f,
@@ -82,24 +118,6 @@ class PreviewActivity : AppCompatActivity() {
                 cellHeight = 0.29f,
                 leftPadding = 0.320f,
                 topPadding = 0.058f,
-                hGap = 0.025f,
-                vGap = 0.010f
-            )
-
-            // ── VALENTINE ──────────────────────────────────────────────
-            "valentine_4" -> LayoutConfig(
-                cellWidth = 0.45f,
-                cellHeight = 0.428f,
-                leftPadding = 0.04f,
-                topPadding = 0.05f,
-                hGap = 0.02f,
-                vGap = 0.01f
-            )
-            "valentine_6" -> LayoutConfig(
-                cellWidth = 0.305f,
-                cellHeight = 0.29f,
-                leftPadding = 0.320f,
-                topPadding = 0.055f,
                 hGap = 0.025f,
                 vGap = 0.010f
             )
@@ -221,9 +239,10 @@ class PreviewActivity : AppCompatActivity() {
     
     private fun getFrameName(): String {
         val suffix = when (selectedFilter.uppercase()) {
-            "FOOTBALL" -> "_football"
-            "VALENTINE" -> "_valentine"
-            else -> ""
+            "FOOTBALL"    -> "_football"
+            "AL_AZHAR_41" -> "_al_azhar_41"
+            "AL_AZHAR"    -> "_al_azhar"    // ← tambah ini
+            else          -> ""
         }
         return "frame${gridCount}_photobooth$suffix.png"
     }
@@ -258,7 +277,8 @@ class PreviewActivity : AppCompatActivity() {
         android.util.Log.d("PRINT", "Base64 size: ${base64Image.length} chars, image: ${sizeKB}KB")
         Toast.makeText(this, "📦 Ukuran: ${sizeKB}KB, mulai kirim...", Toast.LENGTH_SHORT).show()
 
-        val url = "http://192.168.1.59:8000/api/print"
+        // val url = "http://192.168.1.59:8000/api/print"
+        val url = "http://192.168.8.193:8000/api/print"
         val client = okhttp3.OkHttpClient.Builder()
             .connectTimeout(30, java.util.concurrent.TimeUnit.SECONDS)
             .writeTimeout(120, java.util.concurrent.TimeUnit.SECONDS)
