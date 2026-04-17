@@ -61,14 +61,6 @@ android {
         jvmTarget = "17"
     }
 
-    packaging {
-        resources {
-            pickFirsts += listOf(
-                "lib/armeabi-v7a/libjpeg-turbo1500.so",
-                "lib/arm64-v8a/libjpeg-turbo1500.so"
-            )
-        }
-    }
 }
 
 dependencies {
@@ -77,10 +69,12 @@ dependencies {
     implementation("com.google.android.material:material:1.11.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.leanback:leanback:1.0.0")
-    implementation("org.uvccamera:lib:0.0.13")
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
     implementation("androidx.exifinterface:exifinterface:1.3.7")
     implementation("androidx.recyclerview:recyclerview:1.3.2")
+    implementation("androidx.media3:media3-exoplayer:1.4.1")
+    implementation("androidx.media3:media3-exoplayer-rtsp:1.4.1")
+    implementation("androidx.media3:media3-ui:1.4.1")
 
     // Glide - image loading
     implementation("com.github.bumptech.glide:glide:4.16.0")

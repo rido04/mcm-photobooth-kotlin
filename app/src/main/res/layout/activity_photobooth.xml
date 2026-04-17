@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -47,10 +48,14 @@
             android:layout_weight="3"
             android:background="#000000">
 
-            <SurfaceView
-                android:id="@+id/surfaceView"
+            <androidx.media3.ui.PlayerView
+                android:id="@+id/playerView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:keepScreenOn="true"
+                android:background="#000000"
+                app:use_controller="false"
+                app:resize_mode="fill" />
 
             <!-- Camera not ready message -->
             <TextView
@@ -58,7 +63,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="Colokkan USB webcam untuk memulai"
+                android:text="Menghubungkan preview host camera"
                 android:textColor="#FFFFFF"
                 android:textSize="14sp"
                 android:background="#AA000000"
